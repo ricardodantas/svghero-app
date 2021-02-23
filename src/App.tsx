@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import icon from '../assets/icon.svg';
 import './App.global.css';
 
-const { extendDefaultPlugins } = require('svgo');
+import { SvgOptimizer } from './libs/svg';
 
-const defaultSettings = {
-  plugins: extendDefaultPlugins([{ name: 'removeDimensions', active: true }]),
-};
+const resultSVG = SvgOptimizer({
+  filePath: '/Users/ricardodantas/Dev/svghero-app/assets/icon.min.svg',
+  replaceOldFile: true,
+});
 
-console.log('===> defaultSettings: ', defaultSettings);
+console.log('===> resultSVG: ', resultSVG);
 
 const Hello = () => {
   return (
