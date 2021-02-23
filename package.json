@@ -30,8 +30,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "SvgHero",
+    "appId": "app.SvgHero",
     "files": [
       "dist/",
       "node_modules/",
@@ -86,34 +86,23 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "ricardodantas",
+      "repo": "svghero-app"
     }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/ricardodantas/svghero-app.git"
   },
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "Ricardo Dantas Goncalves",
+    "email": "ricardodantas@gmail.com",
+    "url": "https://svghero.app"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    },
-    {
-      "name": "John Tran",
-      "email": "jptran318@gmail.com",
-      "url": "https://github.com/jooohhn"
-    }
-  ],
+  "contributors": [],
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": "https://github.com/ricardodantas/svghero-app/issues"
   },
   "keywords": [
     "electron",
@@ -126,7 +115,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/ricardodantas/svghero-app#readme",
   "jest": {
     "testURL": "http://localhost/",
     "moduleNameMapper": {
@@ -185,6 +174,7 @@
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-test-renderer": "^16.9.3",
+    "@types/svgo": "^1.3.4",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
@@ -255,8 +245,9 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "regenerator-runtime": "^0.13.5",
-    "source-map-support": "^0.5.19"
+    "regenerator-runtime": "^0.13.7",
+    "source-map-support": "^0.5.19",
+    "svgo": "^2.0.3"
   },
   "devEngines": {
     "node": ">=10.x",

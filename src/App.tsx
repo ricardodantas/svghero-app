@@ -3,6 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import icon from '../assets/icon.svg';
 import './App.global.css';
 
+const { extendDefaultPlugins } = require('svgo');
+
+const defaultSettings = {
+  plugins: extendDefaultPlugins([{ name: 'removeDimensions', active: true }]),
+};
+
+console.log('===> defaultSettings: ', defaultSettings);
+
 const Hello = () => {
   return (
     <div>
