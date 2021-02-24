@@ -52,9 +52,9 @@ const Home = () => {
           some link
         </a> */}
         <button type="button" onClick={onSelectFilesClick}>
-          <span role="img" aria-label="download">
+          {/* <span role="img" aria-label="download">
             ⬇️
-          </span>
+          </span> */}
           {translate('select_svg_files')}
         </button>
         <p>{translate('drop_files_here')}</p>
