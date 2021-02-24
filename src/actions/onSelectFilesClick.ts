@@ -28,6 +28,9 @@ function openFilesWindow() {
 export default function onSelectFilesClick() {
   try {
     const selectedFiles = openFilesWindow();
+    if (!selectedFiles?.length) {
+      return;
+    }
     startSvgOptimization(selectedFiles);
     showSuccessNotification(selectedFiles);
   } catch (error) {
