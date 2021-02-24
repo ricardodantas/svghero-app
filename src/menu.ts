@@ -162,7 +162,7 @@ export default class MenuBuilder {
       label: translate('Help'),
       submenu: [
         {
-          label: 'Report an issue',
+          label: translate('Report an issue'),
           click() {
             shell.openExternal('https://svghero.app/report/issue');
           },
