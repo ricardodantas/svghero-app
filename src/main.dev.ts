@@ -15,7 +15,15 @@ import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
-import config from './config';
+import AppConfig from './config';
+
+app.setAboutPanelOptions({
+  applicationName: AppConfig.appName,
+  applicationVersion: AppConfig.version,
+  credits: AppConfig.credits,
+  authors: AppConfig.authors,
+  website: AppConfig.website,
+});
 
 export default class AppUpdater {
   constructor() {
@@ -73,7 +81,7 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
-    title: config.appName,
+    title: AppConfig.appName,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
