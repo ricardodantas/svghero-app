@@ -39,16 +39,16 @@ const Hello = () => {
     <div>
       <div className="Header">
         <img width="200px" alt="icon" src={icon} />
+        <h1>SvgHero</h1>
       </div>
-      <h1>electron-react-boilerplate</h1>
       <div className="Main">
-        <a
+        {/* <a
           href="https://electron-react-boilerplate.js.org/"
           target="_blank"
           rel="noreferrer"
         >
           some link
-        </a>
+        </a> */}
         <button
           type="button"
           onClick={() => {
