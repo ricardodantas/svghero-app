@@ -7,9 +7,9 @@ const { dialog } = remote;
 type SettingsOptimization = {
   replaceOldFile: boolean;
 };
-// eslint-disable-next-line import/prefer-default-export
-export function startSvgOptimization(settings?: SettingsOptimization) {
-  const selectedFiles = dialog.showOpenDialogSync({
+
+export function openFilesWindow() {
+  return dialog.showOpenDialogSync({
     properties: ['openFile', 'multiSelections'],
     filters: [
       {
@@ -20,6 +20,12 @@ export function startSvgOptimization(settings?: SettingsOptimization) {
       },
     ],
   });
+}
+
+export function startSvgOptimization(
+  selectedFiles: any[],
+  settings?: SettingsOptimization
+) {
   return (selectedFiles || []).map((filePath: string) => {
     const resultSVG = SvgOptimizer({
       filePath,

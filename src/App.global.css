@@ -2,6 +2,7 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
+
 body {
   position: relative;
   color: white;
@@ -50,9 +51,18 @@ a:hover {
   cursor: pointer;
 }
 
-.Hello {
+.Header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.Main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 20px 0;
 }
