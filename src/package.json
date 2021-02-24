@@ -1,7 +1,7 @@
 {
   "name": "svg-hero",
   "productName": "svg-hero-app",
-  "version": "2.3.0",
+  "version": "0.1.0",
   "description": "SVG optimizer app for Mac OS, Linux and Windows.",
   "main": "./main.prod.js",
   "author": {
