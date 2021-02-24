@@ -20,7 +20,7 @@ export function startSvgOptimization(settings?: SettingsOptimization) {
       },
     ],
   });
-  return selectedFiles.map((filePath: string) => {
+  return (selectedFiles || []).map((filePath: string) => {
     const resultSVG = SvgOptimizer({
       filePath,
       replaceOldFile: settings?.replaceOldFile === true,
