@@ -15,6 +15,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import config from './config';
 
 export default class AppUpdater {
   constructor() {
@@ -72,7 +73,7 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
-    title: 'SvgHero',
+    title: config.appName,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,

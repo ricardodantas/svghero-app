@@ -3,10 +3,16 @@
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
 
+:root {
+  color-scheme: light dark;
+  /* both supported */
+}
+
 body {
   position: relative;
   color: white;
   height: 100vh;
+  background-color: #121212;
   /* background: linear-gradient(
     200.96deg,
     #fedc2a -29.09%,
@@ -19,6 +25,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    color: #eee;
+    background: #121212;
+  }
+  body a {
+    color: #809fff;
+  }
+} */
 
 button {
   background-color: #424242;

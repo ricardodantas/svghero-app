@@ -6,8 +6,7 @@ import {
   MenuItemConstructorOptions,
 } from 'electron';
 import translate from './libs/translate';
-
-const productName = 'SvgHero';
+import AppConfig from './config';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -57,17 +56,17 @@ export default class MenuBuilder {
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: productName,
+      label: AppConfig.appName,
       submenu: [
         {
-          label: `${translate('About')} ${productName}`,
+          label: `${translate('About')} ${AppConfig.appName}`,
           selector: 'orderFrontStandardAboutPanel:',
         },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: `${translate('Hide')} ${productName}`,
+          label: `${translate('Hide')} ${AppConfig.appName}`,
           accelerator: 'Command+H',
           selector: 'hide:',
         },
@@ -164,7 +163,7 @@ export default class MenuBuilder {
         {
           label: translate('Report an issue'),
           click() {
-            shell.openExternal('https://svghero.app/report/issue');
+            shell.openExternal(`${AppConfig.website}/report/issue`);
           },
         },
       ],
@@ -251,7 +250,7 @@ export default class MenuBuilder {
           {
             label: 'Report an issue',
             click() {
-              shell.openExternal('https://svghero.app/report/issue');
+              shell.openExternal(`${AppConfig.website}/report/issue`);
             },
           },
         ],

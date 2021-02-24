@@ -6,6 +6,7 @@ import onSelectFilesClick from '../actions/onSelectFilesClick';
 import onFilesDropped from '../actions/onFilesDropped';
 import DropFilesHere from '../components/DropFilesHere';
 import translate from '../libs/translate';
+import AppConfig from '../config';
 
 const Home = () => {
   const [draggingStatus, setDraggingStatus] = useState('stopped');
@@ -41,7 +42,7 @@ const Home = () => {
     <div>
       <div className="Header">
         <img width="200px" alt="icon" src={icon} />
-        <h1>SvgHero</h1>
+        <h1>{AppConfig.appName}</h1>
       </div>
       <div className="Main">
         {/* <a

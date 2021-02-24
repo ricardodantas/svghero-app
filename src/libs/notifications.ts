@@ -16,8 +16,9 @@ export function showSuccessNotification(selectedFiles: string[]) {
           'notification_message_files_optimized'
         )}`
       : selectedFiles[0];
-  new Notification({
+  const notification = new Notification({
     title: translate(notificationTitle),
     body: notificationMessage,
-  }).show();
+  });
+  notification.show();
 }
