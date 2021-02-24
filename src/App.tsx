@@ -3,14 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import icon from '../assets/icon.svg';
 import './App.global.css';
 
-import { SvgOptimizer } from './libs/svg';
-
-const resultSVG = SvgOptimizer({
-  filePath: '/Users/ricardodantas/Dev/svghero-app/assets/icon.min.svg',
-  replaceOldFile: true,
-});
-
-console.log('===> resultSVG: ', resultSVG);
+import { startSvgOptimization } from './actions/startSvgOptimization';
 
 const Hello = () => {
   return (
@@ -25,25 +18,14 @@ const Hello = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
+          some link
         </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
+        <button type="button" onClick={() => startSvgOptimization()}>
+          <span role="img" aria-label="download">
+            ⬇️
+          </span>
+          Select SVG files
+        </button>
       </div>
     </div>
   );
