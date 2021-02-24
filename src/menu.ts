@@ -5,6 +5,7 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
+import translate from './libs/translate';
 
 const productName = 'SvgHero';
 
@@ -59,26 +60,26 @@ export default class MenuBuilder {
       label: productName,
       submenu: [
         {
-          label: `About ${productName}`,
+          label: `${translate('About')} ${productName}`,
           selector: 'orderFrontStandardAboutPanel:',
         },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: `Hide ${productName}`,
+          label: `${translate('Hide')} ${productName}`,
           accelerator: 'Command+H',
           selector: 'hide:',
         },
         {
-          label: 'Hide Others',
+          label: translate('Hide Others'),
           accelerator: 'Command+Shift+H',
           selector: 'hideOtherApplications:',
         },
-        { label: 'Show All', selector: 'unhideAllApplications:' },
+        { label: translate('Show All'), selector: 'unhideAllApplications:' },
         { type: 'separator' },
         {
-          label: 'Quit',
+          label: translate('Quit'),
           accelerator: 'Command+Q',
           click: () => {
             app.quit();
@@ -106,21 +107,21 @@ export default class MenuBuilder {
       label: 'View',
       submenu: [
         {
-          label: 'Reload',
+          label: translate('Reload'),
           accelerator: 'Command+R',
           click: () => {
             this.mainWindow.webContents.reload();
           },
         },
         {
-          label: 'Toggle Full Screen',
+          label: translate('Toggle Full Screen'),
           accelerator: 'Ctrl+Command+F',
           click: () => {
             this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
           },
         },
         {
-          label: 'Toggle Developer Tools',
+          label: translate('Toggle Developer Tools'),
           accelerator: 'Alt+Command+I',
           click: () => {
             this.mainWindow.webContents.toggleDevTools();
@@ -129,10 +130,10 @@ export default class MenuBuilder {
       ],
     };
     const subMenuViewProd: MenuItemConstructorOptions = {
-      label: 'View',
+      label: translate('View'),
       submenu: [
         {
-          label: 'Toggle Full Screen',
+          label: translate('Toggle Full Screen'),
           accelerator: 'Ctrl+Command+F',
           click: () => {
             this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
@@ -141,20 +142,24 @@ export default class MenuBuilder {
       ],
     };
     const subMenuWindow: DarwinMenuItemConstructorOptions = {
-      label: 'Window',
+      label: translate('Window'),
       submenu: [
         {
-          label: 'Minimize',
+          label: translate('Minimize'),
           accelerator: 'Command+M',
           selector: 'performMiniaturize:',
         },
-        { label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
+        {
+          label: translate('Close'),
+          accelerator: 'Command+W',
+          selector: 'performClose:',
+        },
         { type: 'separator' },
         { label: 'Bring All to Front', selector: 'arrangeInFront:' },
       ],
     };
     const subMenuHelp: MenuItemConstructorOptions = {
-      label: 'Help',
+      label: translate('Help'),
       submenu: [
         {
           label: 'Report an issue',
@@ -183,14 +188,14 @@ export default class MenuBuilder {
   buildDefaultTemplate() {
     const templateDefault = [
       {
-        label: '&File',
+        label: `&${translate('File')}`,
         submenu: [
           {
-            label: '&Open',
+            label: `&${translate('Open')}`,
             accelerator: 'Ctrl+O',
           },
           {
-            label: '&Close',
+            label: `&${translate('Close')}`,
             accelerator: 'Ctrl+W',
             click: () => {
               this.mainWindow.close();
@@ -199,20 +204,20 @@ export default class MenuBuilder {
         ],
       },
       {
-        label: '&View',
+        label: `&${translate('View')}`,
         submenu:
           process.env.NODE_ENV === 'development' ||
           process.env.DEBUG_PROD === 'true'
             ? [
                 {
-                  label: '&Reload',
+                  label: `&${translate('Reload')}`,
                   accelerator: 'Ctrl+R',
                   click: () => {
                     this.mainWindow.webContents.reload();
                   },
                 },
                 {
-                  label: 'Toggle &Full Screen',
+                  label: translate('Toggle &Full Screen'),
                   accelerator: 'F11',
                   click: () => {
                     this.mainWindow.setFullScreen(
@@ -221,7 +226,7 @@ export default class MenuBuilder {
                   },
                 },
                 {
-                  label: 'Toggle &Developer Tools',
+                  label: translate('Toggle &Developer Tools'),
                   accelerator: 'Alt+Ctrl+I',
                   click: () => {
                     this.mainWindow.webContents.toggleDevTools();
@@ -230,7 +235,7 @@ export default class MenuBuilder {
               ]
             : [
                 {
-                  label: 'Toggle &Full Screen',
+                  label: translate('Toggle &Full Screen'),
                   accelerator: 'F11',
                   click: () => {
                     this.mainWindow.setFullScreen(
@@ -241,7 +246,7 @@ export default class MenuBuilder {
               ],
       },
       {
-        label: 'Help',
+        label: translate('Help'),
         submenu: [
           {
             label: 'Report an issue',
