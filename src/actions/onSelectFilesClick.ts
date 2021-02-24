@@ -1,3 +1,4 @@
+import { showSuccessNotification } from '../libs/notifications';
 import { ALLOWED_FILE_EXTENSIONS } from '../libs/svg';
 import onError from './onError';
 import startSvgOptimization from './startSvgOptimization';
@@ -28,6 +29,7 @@ export default function onSelectFilesClick() {
   try {
     const selectedFiles = openFilesWindow();
     startSvgOptimization(selectedFiles);
+    showSuccessNotification(selectedFiles);
   } catch (error) {
     onError(error);
   }

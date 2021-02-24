@@ -1,3 +1,4 @@
+import { showSuccessNotification } from '../libs/notifications';
 import onError from './onError';
 import startSvgOptimization from './startSvgOptimization';
 
@@ -13,6 +14,7 @@ export default function onFilesDropped(event: DragEvent) {
     }
     if (selectedFiles?.length) {
       startSvgOptimization(selectedFiles);
+      showSuccessNotification(selectedFiles);
     }
   } catch (error) {
     onError(error);
