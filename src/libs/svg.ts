@@ -1,4 +1,5 @@
 import SVGO from 'svgo';
+import AppError from './errors';
 
 const { readFileSync, writeFileSync } = require('fs');
 const path = require('path');
@@ -24,7 +25,10 @@ function getFile(params: SvgOptimizerParams) {
   const fileName: string = path.basename(params.filePath);
   const fileExtension = path.extname(fileName);
   if (!ALLOWED_FILE_EXTENSIONS.includes(fileExtension)) {
-    throw new Error('This is not a SVG file, please select a SVG file.');
+    throw new AppError(
+      'warning',
+      'This is not a SVG file, please select a SVG file.'
+    );
   }
 
   const outputDir = path.dirname(params.filePath);

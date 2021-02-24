@@ -3,23 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import icon from '../assets/icon.svg';
 import './App.global.css';
 
-import {
-  startSvgOptimization,
-  openFilesWindow,
-} from './actions/startSvgOptimization';
+import onSelectFilesClick from './actions/onSelectFilesClick';
+import onFilesDropped from './actions/onFilesDropped';
 
 const Hello = () => {
   document.addEventListener('drop', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    const selectedFiles: string[] = [];
-    // eslint-disable-next-line no-restricted-syntax
-    for (const f of event.dataTransfer?.files) {
-      selectedFiles.push(f.path);
-    }
-    if (selectedFiles?.length) {
-      startSvgOptimization(selectedFiles);
-    }
+    onFilesDropped(event);
   });
 
   document.addEventListener('dragover', (e) => {
@@ -49,13 +40,7 @@ const Hello = () => {
         >
           some link
         </a> */}
-        <button
-          type="button"
-          onClick={() => {
-            const selectedFiles = openFilesWindow();
-            startSvgOptimization(selectedFiles);
-          }}
-        >
+        <button type="button" onClick={onSelectFilesClick}>
           <span role="img" aria-label="download">
             ⬇️
           </span>

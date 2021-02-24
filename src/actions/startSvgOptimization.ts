@@ -1,28 +1,10 @@
-import { SvgOptimizer, ALLOWED_FILE_EXTENSIONS } from '../libs/svg';
-
-const electron = window.require('electron');
-const { remote } = electron;
-const { dialog } = remote;
+import { SvgOptimizer } from '../libs/svg';
 
 type SettingsOptimization = {
   replaceOldFile: boolean;
 };
 
-export function openFilesWindow() {
-  return dialog.showOpenDialogSync({
-    properties: ['openFile', 'multiSelections'],
-    filters: [
-      {
-        name: 'Images',
-        extensions: ALLOWED_FILE_EXTENSIONS.map((extension) =>
-          extension.replace('.', '')
-        ),
-      },
-    ],
-  });
-}
-
-export function startSvgOptimization(
+export default function startSvgOptimization(
   selectedFiles: any[],
   settings?: SettingsOptimization
 ) {
