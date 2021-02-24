@@ -31,8 +31,10 @@ export default function onSelectFilesClick() {
     if (!selectedFiles?.length) {
       return;
     }
-    startSvgOptimization(selectedFiles);
-    showSuccessNotification(selectedFiles);
+    const optimizedFiles = startSvgOptimization(selectedFiles);
+    showSuccessNotification(
+      optimizedFiles.map((optimizedFile) => optimizedFile.path)
+    );
   } catch (error) {
     onError(error);
   }

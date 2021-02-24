@@ -13,7 +13,6 @@ export default function startSvgOptimization(
       filePath,
       replaceOldFile: settings?.replaceOldFile === true,
     });
-    console.log('===> resultSVG: ', resultSVG);
     return resultSVG;
   });
 }

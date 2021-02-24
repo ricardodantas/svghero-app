@@ -13,8 +13,10 @@ export default function onFilesDropped(event: DragEvent) {
       selectedFiles.push(f.path);
     }
     if (selectedFiles?.length) {
-      startSvgOptimization(selectedFiles);
-      showSuccessNotification(selectedFiles);
+      const optimizedFiles = startSvgOptimization(selectedFiles);
+      showSuccessNotification(
+        optimizedFiles.map((optimizedFile) => optimizedFile.path)
+      );
     }
   } catch (error) {
     onError(error);
