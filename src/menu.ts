@@ -4,6 +4,7 @@ import {
   shell,
   BrowserWindow,
   MenuItemConstructorOptions,
+  ipcMain,
 } from 'electron';
 import translate from './libs/translate';
 import AppConfig from './config';
@@ -62,8 +63,19 @@ export default class MenuBuilder {
           label: `${translate('About')} ${AppConfig.appName}`,
           selector: 'orderFrontStandardAboutPanel:',
         },
+        // { type: 'separator' },
+        // { label: 'Services', submenu: [] },
         { type: 'separator' },
-        { label: 'Services', submenu: [] },
+        {
+          label: `${translate('Preferences')}`,
+          accelerator: 'Command+,',
+          click: () => {
+            this.mainWindow.webContents.send(
+              'REACT_ROUTE_GO_TO',
+              AppConfig.routes.preferences
+            );
+          },
+        },
         { type: 'separator' },
         {
           label: `${translate('Hide')} ${AppConfig.appName}`,

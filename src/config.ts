@@ -4,6 +4,9 @@ const config = Object.freeze({
   version: '0.1.0',
   credits: 'Ricardo Dantas Gonçalves',
   authors: ['Ricardo Dantas Gonçalves'],
+  routes: {
+    preferences: '/preferences',
+  },
 });
 
 export default config;
