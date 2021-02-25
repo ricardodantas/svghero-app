@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import icon from '../../assets/icon.svg';
-import './Home.global.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './Preferences.scss';
 
 import translate from '../libs/translate';
 import AppConfig from '../config';
 
 const Preferences = () => {
+  // const history = useHistory();
   return (
-    <div>
-      <div className="Header">
-        <img width="200px" alt="icon" src={icon} />
+    <div className="height-size-full">
+      <div className={styles.Header}>
         <h1>{translate('Preferences')}</h1>
       </div>
-      <div className="Main" />
+      <div className={styles.Main}>
+        <Link className={styles.BackButton} to={AppConfig.routes.home}>
+          Back
+        </Link>
+      </div>
     </div>
   );
 };

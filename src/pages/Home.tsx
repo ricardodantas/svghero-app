@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import icon from '../../assets/icon.svg';
-import './Home.global.css';
+import styles from './Home.scss';
 
 import onSelectFilesClick from '../actions/onSelectFilesClick';
 import onFilesDropped from '../actions/onFilesDropped';
@@ -42,12 +42,12 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <div className="Header">
+    <div className="no-scroll height-size-full align-center-xy flex-direction-column">
+      <div className={styles.Header}>
         <img width="200px" alt="icon" src={icon} />
         <h1>{AppConfig.appName}</h1>
       </div>
-      <div className="Main">
+      <div className={styles.Main}>
         {/* <a
           href="https://electron-react-boilerplate.js.org/"
           target="_blank"

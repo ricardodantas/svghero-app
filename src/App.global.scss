@@ -5,7 +5,6 @@
 
 :root {
   color-scheme: light dark;
-  /* both supported */
 }
 
 body {
@@ -13,20 +12,29 @@ body {
   color: white;
   height: 100vh;
   background-color: #121212;
-  /* background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  ); */
   font-family: sans-serif;
+}
+
+.height-size-full {
+  height: 100vh;
+}
+
+.no-scroll {
   overflow-y: hidden;
+}
+.flex-direction-column {
+  flex-direction: column;
+}
+.flex-direction-row {
+  flex-direction: row;
+}
+.align-center-xy {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   body {
     color: #eee;
     background: #121212;
@@ -34,7 +42,7 @@ body {
   body a {
     color: #809fff;
   }
-} */
+}
 
 button {
   background-color: #424242;
@@ -67,20 +75,4 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
-}
-
-.Header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px 0;
-}
-
-.Main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px 0;
 }

@@ -5,6 +5,7 @@ const config = Object.freeze({
   credits: 'Ricardo Dantas Gonçalves',
   authors: ['Ricardo Dantas Gonçalves'],
   routes: {
+    home: '/',
     preferences: '/preferences',
   },
   ipcChannels: {
