@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-underscore-dangle */
 const path = require('path');
 const electron = require('electron');

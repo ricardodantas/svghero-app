@@ -4,7 +4,6 @@ import {
   shell,
   BrowserWindow,
   MenuItemConstructorOptions,
-  ipcMain,
 } from 'electron';
 import translate from './libs/translate';
 import AppConfig from './config';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
@@ -30,13 +31,13 @@ const Home = () => {
     e.stopPropagation();
   });
 
-  document.addEventListener('dragenter', (event) => {
-    console.log('File is in the Drop Space');
+  document.addEventListener('dragenter', (_event) => {
+    // console.log('File is in the Drop Space');
     setDraggingStatus('started');
   });
 
-  document.addEventListener('dragleave', (event) => {
-    console.log('File has left the Drop Space');
+  document.addEventListener('dragleave', (_event) => {
+    // console.log('File has left the Drop Space');
     setDraggingStatus('stopped');
   });
 

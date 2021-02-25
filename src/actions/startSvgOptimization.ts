@@ -5,7 +5,7 @@ type SettingsOptimization = {
 };
 
 export default function startSvgOptimization(
-  selectedFiles: any[],
+  selectedFiles: string[],
   settings?: SettingsOptimization
 ) {
   return (selectedFiles || []).map((filePath: string) => {
