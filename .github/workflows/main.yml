@@ -23,13 +23,13 @@ jobs:
         run: |
           yarn install
 
-      - name: Run tests and lint
+      - name: Run build and lint
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          yarn package-ci
           yarn lint
           yarn ts
+          yarn build
       - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
