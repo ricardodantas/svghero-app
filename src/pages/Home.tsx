@@ -7,8 +7,11 @@ import onFilesDropped from '../actions/onFilesDropped';
 import DropFilesHere from '../components/DropFilesHere';
 import translate from '../libs/translate';
 import AppConfig from '../config';
+import initMenuTrigger from '../actions/initMenuTrigger';
 
 const Home = () => {
+  initMenuTrigger();
+
   const [draggingStatus, setDraggingStatus] = useState('stopped');
 
   document.addEventListener('drop', (event) => {

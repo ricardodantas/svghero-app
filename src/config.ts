@@ -7,6 +7,9 @@ const config = Object.freeze({
   routes: {
     preferences: '/preferences',
   },
+  ipcChannels: {
+    reactRouterGoTo: 'REACT_ROUTER_GO_TO',
+  },
 });
 
 export default config;

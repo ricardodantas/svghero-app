@@ -71,7 +71,7 @@ export default class MenuBuilder {
           accelerator: 'Command+,',
           click: () => {
             this.mainWindow.webContents.send(
-              'REACT_ROUTE_GO_TO',
+              AppConfig.ipcChannels.reactRouterGoTo,
               AppConfig.routes.preferences
             );
           },
