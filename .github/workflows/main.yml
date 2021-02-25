@@ -19,18 +19,18 @@ jobs:
         with:
           node-version: 15
 
-      - name: yarn install
+      - name: Install dependencies
         run: |
           yarn install
 
-      - name: yarn test
+      - name: Run tests and lint
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn package-ci
           yarn lint
           yarn ts
-      - name: yarn release
+      - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
