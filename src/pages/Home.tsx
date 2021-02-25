@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Icon } from '@blueprintjs/core';
+import { Link } from 'react-router-dom';
+import { IconNames } from '@blueprintjs/icons';
 import icon from '../../assets/icon.svg';
 import styles from './Home.scss';
 
@@ -59,10 +62,18 @@ const Home = () => {
           {/* <span role="img" aria-label="download">
             ⬇️
           </span> */}
+          <Icon icon={IconNames.DOCUMENT_OPEN} iconSize={Icon.SIZE_LARGE} />{' '}
           {translate('select_svg_files')}
         </button>
         <p>{translate('drop_files_here')}</p>
       </div>
+      <Link
+        className={styles.PreferencesButton}
+        to={AppConfig.routes.preferences}
+        title={`${translate('Preferences')}`}
+      >
+        <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
+      </Link>
     </div>
   );
 };

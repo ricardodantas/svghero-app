@@ -3,15 +3,40 @@
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
 
+@import '~normalize.css';
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+
 :root {
   color-scheme: light dark;
+  --body-background-color: #121212;
+  --body-font-color: white;
+}
+
+:focus,
+:active {
+  outline: none;
+  outline-offset: 0;
+  outline-color: transparent;
+  box-shadow: none;
+}
+
+.bp3-control {
+  @extend .bp3-control;
+  margin-bottom: 0;
+}
+
+.bp3-input {
+  background-color: black;
+  outline: none;
+  color: var(--body-font-color);
 }
 
 body {
   position: relative;
-  color: white;
+  color: var(--body-font-color);
   height: 100vh;
-  background-color: #121212;
+  background-color: var(--body-background-color);
   font-family: sans-serif;
 }
 
@@ -33,16 +58,28 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #eee;
-    background: #121212;
-  }
-  body a {
-    color: #809fff;
-  }
+.padding-small-xy {
+  padding: 5px;
 }
+
+.padding-medium-xy {
+  padding: 15px;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   body {
+//     color: #eee;
+//     background: var(--body-background-color);
+//   }
+//   body a {
+//     color: #809fff;
+//     cursor: pointer;
+//     &:hover{
+//       color: #809fff;
+//       opacity: 0.7;
+//     }
+//   }
+// }
 
 button {
   background-color: #424242;
@@ -52,7 +89,7 @@ button {
   border: none;
   appearance: none;
   font-size: 1.2rem;
-  color: white;
+  color: var(--body-font-color);
   /* box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
     0px 18px 88px -4px rgba(24, 39, 75, 0.14); */
   transition: transform ease-in 0.1s;
@@ -69,10 +106,13 @@ li {
 
 a {
   text-decoration: none;
+  color: #888;
+  &:hover {
+    color: #999;
+  }
 }
 
 a:hover {
   opacity: 1;
   text-decoration: none;
-  cursor: pointer;
 }

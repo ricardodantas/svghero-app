@@ -1,11 +1,43 @@
-.BackButton {
-  color: red;
+.SearchBar {
+  margin-top: 30px;
+}
+
+.FixedBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--body-background-color);
+  z-index: 1;
+}
+
+.Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    margin-right: auto;
+    margin-left: 10px;
+  }
 }
 
 .Header {
-  margin: 20px 0;
+  margin: 0;
+  display: flex;
+  align-content: space-between;
+
+  a {
+    margin-left: auto;
+  }
 }
 
 .Main {
-  margin: 20px 0;
+  margin: 126px 0 0 0;
+}
+
+.Rows {
+  margin: 0;
 }
