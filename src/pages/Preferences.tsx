@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, InputGroup } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
-import styles from './Preferences.scss';
+import styles from './PreferencesStyles.scss';
 
 import translate from '../libs/translate';
 import AppConfig from '../config';
@@ -14,7 +14,7 @@ const { extendDefaultPlugins } = require('svgo');
 
 const defaultSvgPlugins: SvgoPlugin[] = extendDefaultPlugins([]);
 
-const Preferences = () => {
+export default function Preferences() {
   const savedPreferences = defaultSvgPlugins.map((svgoPlugin) =>
     getPreference(svgoPlugin.name, {
       name: svgoPlugin.name,
@@ -25,7 +25,7 @@ const Preferences = () => {
   );
 
   const [items, setItems] = useState<PreferenceInputs[]>([...savedPreferences]);
-  function keyUpHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  function keyUpHandler(event: React.KeyboardEvent<HTMLInputElement>) {
     setItems(
       savedPreferences.filter(
         (item) =>
@@ -75,6 +75,4 @@ const Preferences = () => {
       </div>
     </div>
   );
-};
-
-export default Preferences;
+}
