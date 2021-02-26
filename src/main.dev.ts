@@ -17,6 +17,8 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import AppConfig from './config';
 
+const Store = require('electron-store');
+
 app.setAboutPanelOptions({
   applicationName: AppConfig.appName,
   applicationVersion: AppConfig.version,
@@ -75,6 +77,8 @@ const createWindow = async () => {
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
+
+  Store.initRenderer();
 
   mainWindow = new BrowserWindow({
     show: false,

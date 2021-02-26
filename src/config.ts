@@ -10,6 +10,8 @@ const config = Object.freeze({
   },
   ipcChannels: {
     reactRouterGoTo: 'REACT_ROUTER_GO_TO',
+    preferencesSet: 'PREFERENCES_SET',
+    preferencesGet: 'PREFERENCES_GET',
   },
 });
 

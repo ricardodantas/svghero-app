@@ -16,9 +16,21 @@ export const DEFAULT_SVGO_SETTINGS: SVGO.Options = {
   ]),
 };
 
-type SvgOptimizerParams = {
+export type SvgoPlugin = {
+  description: string;
+  active: boolean;
+  name: string;
+};
+
+export type SvgoSettings = {
+  plugins: SvgoPlugin[];
+  multipass?: boolean;
+};
+
+export type SvgOptimizerParams = {
   filePath: string;
   replaceOldFile?: boolean;
+  svgo: SvgoSettings;
 };
 
 function getFile(params: SvgOptimizerParams) {
@@ -50,6 +62,13 @@ type CreateFileParams = {
 
 function createFile(params: CreateFileParams) {
   return writeFileSync(params.filePath, params.fileContent);
+}
+
+export function setSvgoSettings(plugins: SvgoPlugin[]) {
+  return {
+    multipass: true,
+    plugins,
+  };
 }
 
 // eslint-disable-next-line import/prefer-default-export

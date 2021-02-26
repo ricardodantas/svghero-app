@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, InputGroup } from '@blueprintjs/core';
@@ -7,24 +6,38 @@ import styles from './Preferences.scss';
 
 import translate from '../libs/translate';
 import AppConfig from '../config';
-import PreferenceItem, {
-  PreferenceItemProps,
-} from '../components/PreferenceItem';
+import PreferenceItem from '../components/PreferenceItem';
+import { PreferenceInputs, SvgoPlugin } from '../libs/preferences';
+import { getPreference, setPreference } from '../actions/preferences';
 
 const { extendDefaultPlugins } = require('svgo');
 
+const defaultSvgPlugins: SvgoPlugin[] = extendDefaultPlugins([]);
+
 const Preferences = () => {
-  const defaultItems: PreferenceItemProps[] = extendDefaultPlugins([]);
-  const [items, setItems] = useState<PreferenceItemProps[]>([...defaultItems]);
-  const keyUpHandler = (event) => {
+  const savedPreferences = defaultSvgPlugins.map((svgoPlugin) =>
+    getPreference(svgoPlugin.name, {
+      name: svgoPlugin.name,
+      value: svgoPlugin.active,
+      type: 'boolean',
+      description: svgoPlugin.description,
+    })
+  );
+
+  const [items, setItems] = useState<PreferenceInputs[]>([...savedPreferences]);
+  function keyUpHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setItems(
-      defaultItems.filter(
+      savedPreferences.filter(
         (item) =>
-          item.description.includes(event.target.value) ||
-          item.name.includes(event.target.value)
+          item.description?.includes(event.target.value) ||
+          item.name?.includes(event.target.value)
       )
     );
-  };
+  }
+
+  function onUpdatePreferenceItem(preference: PreferenceInputs) {
+    setPreference(preference);
+  }
 
   return (
     <div className="height-size-full padding-medium-xy">
@@ -52,9 +65,10 @@ const Preferences = () => {
           {items.map((item) => (
             <PreferenceItem
               description={item.description}
-              active={item.active}
+              active={item.value as boolean}
               name={item.name}
               key={item.name}
+              onUpdate={onUpdatePreferenceItem}
             />
           ))}
         </div>

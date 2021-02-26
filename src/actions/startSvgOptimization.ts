@@ -1,17 +1,25 @@
-import { SvgOptimizer } from '../libs/svg';
+import { storePreferences } from '../libs/store';
+import { setSvgoSettings, SvgOptimizer, SvgoSettings } from '../libs/svg';
 
-type SettingsOptimization = {
+export type SettingsOptimization = {
+  svgo: SvgoSettings;
   replaceOldFile: boolean;
 };
 
-export default function startSvgOptimization(
-  selectedFiles: string[],
-  settings?: SettingsOptimization
-) {
+function buildSvgoSettings() {
+  const svgoPlugins = storePreferences.get();
+  return setSvgoSettings(svgoPlugins);
+}
+
+export default function startSvgOptimization(selectedFiles: string[]) {
+  const settings = {
+    svgo: buildSvgoSettings(),
+    replaceOldFile: false,
+  };
   return (selectedFiles || []).map((filePath: string) => {
     const resultSVG = SvgOptimizer({
       filePath,
-      replaceOldFile: settings?.replaceOldFile === true,
+      ...settings,
     });
     return resultSVG;
   });

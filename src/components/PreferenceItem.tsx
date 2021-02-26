@@ -2,15 +2,26 @@ import React, { useState } from 'react';
 import { Alignment, Switch } from '@blueprintjs/core';
 import translate from '../libs/translate';
 import styles from './PreferenceItem.scss';
+import { PreferenceItemProps } from '../libs/preferences';
 
-export type PreferenceItemProps = {
-  description: string;
-  active: boolean;
-  name: string;
-};
-
-const PreferenceItem = ({ description, active }: PreferenceItemProps) => {
+const PreferenceItem = ({
+  name,
+  description,
+  active,
+  onUpdate,
+}: PreferenceItemProps) => {
   const [itemStatus, setItemStatus] = useState<boolean>(active);
+  const onChangePreference = () => {
+    const isActive = !itemStatus;
+    onUpdate({
+      name,
+      description,
+      value: isActive,
+      type: 'boolean',
+    });
+    setItemStatus(isActive);
+  };
+
   return (
     <div className={styles.PreferenceItem}>
       <div className={styles.Description}>{translate(description)}</div>
@@ -19,7 +30,7 @@ const PreferenceItem = ({ description, active }: PreferenceItemProps) => {
           checked={itemStatus}
           alignIndicator={Alignment.RIGHT}
           large
-          onChange={() => setItemStatus(!itemStatus)}
+          onChange={onChangePreference}
         />
       </div>
     </div>
