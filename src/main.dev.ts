@@ -82,10 +82,11 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
+    width: process.env.NODE_ENV === 'development' ? 1024 : 528,
     height: 728,
     icon: getAssetPath('icon.png'),
     title: AppConfig.appName,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
