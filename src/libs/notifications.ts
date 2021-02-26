@@ -1,4 +1,4 @@
-import translate from './translate';
+import translate from '../localization/translate';
 
 const electron = window.require('electron');
 const { remote } = electron;

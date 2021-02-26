@@ -182,6 +182,7 @@
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
+    "@types/styled-components": "^5.1.7",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.2.2",
@@ -253,6 +254,7 @@
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.7",
     "source-map-support": "^0.5.19",
+    "styled-components": "^5.2.1",
     "svgo": "^2.0.3"
   },
   "devEngines": {

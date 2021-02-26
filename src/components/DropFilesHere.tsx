@@ -1,12 +1,16 @@
 import React from 'react';
-import translate from '../libs/translate';
+import styled from 'styled-components';
+import translate from '../localization/translate';
 
-import styles from './DropFilesHere.scss';
+const Message = styled.div({
+  fontWeight: 'bold',
+  fontSize: '25px',
+});
 
 const DropFilesHere = () => {
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column">
-      <div className={styles.Message}>{translate('drop_files_now')}</div>
+      <Message>{translate('drop_files_now')}</Message>
     </div>
   );
 };

@@ -3,15 +3,38 @@ import React, { useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
+import styled from 'styled-components';
 import icon from '../../assets/icon.svg';
-import styles from './Home.scss';
 
 import onSelectFilesClick from '../actions/onSelectFilesClick';
 import onFilesDropped from '../actions/onFilesDropped';
 import DropFilesHere from '../components/DropFilesHere';
-import translate from '../libs/translate';
+import translate from '../localization/translate';
 import AppConfig from '../config';
 import initMenuTrigger from '../actions/initMenuTrigger';
+
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+`;
+
+const ButtonPreferences = styled(Link)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px;
+`;
 
 const Home = () => {
   initMenuTrigger();
@@ -47,11 +70,11 @@ const Home = () => {
 
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column">
-      <div className={styles.Header}>
+      <Header>
         <img width="200px" alt="icon" src={icon} />
         <h1>{AppConfig.appName}</h1>
-      </div>
-      <div className={styles.Main}>
+      </Header>
+      <Container>
         {/* <a
           href="https://electron-react-boilerplate.js.org/"
           target="_blank"
@@ -67,14 +90,13 @@ const Home = () => {
           {translate('select_svg_files')}
         </button>
         <p>{translate('drop_files_here')}</p>
-      </div>
-      <Link
-        className={styles.PreferencesButton}
+      </Container>
+      <ButtonPreferences
         to={AppConfig.routes.preferences}
         title={`${translate('Preferences')}`}
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
-      </Link>
+      </ButtonPreferences>
     </div>
   );
 };

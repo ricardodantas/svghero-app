@@ -5,7 +5,7 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
-import translate from './libs/translate';
+import translate from './localization/translate';
 import AppConfig from './config';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
