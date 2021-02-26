@@ -1,7 +1,7 @@
 const config = Object.freeze({
   appName: 'SvgHero',
   website: 'https://svghero.app',
-  version: '0.2.0',
+  version: '0.2.1',
   credits: 'Ricardo Dantas Gonçalves',
   authors: ['Ricardo Dantas Gonçalves'],
   routes: {
