@@ -1,6 +1,6 @@
 {
   "name": "svg-hero",
-  "productName": "svg-hero-app",
+  "productName": "SvgHero",
   "version": "0.2.2",
   "description": "SVG optimizer app for Mac OS, Linux and Windows.",
   "main": "./main.prod.js",
@@ -13,8 +13,5 @@
     "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
     "postinstall": "yarn electron-rebuild"
   },
-  "license": "MIT",
-  "devDependencies": {
-
-  }
+  "license": "UNLICENSED"
 }

@@ -8,7 +8,7 @@ import translate from '../localization/translate';
 import AppConfig from '../config';
 import PreferenceItem from '../components/PreferenceItem';
 import { PreferenceInputs, SvgoPlugin } from '../libs/preferences';
-import { getPreference, setPreference } from '../actions/preferences';
+import { getPreference, setPreference } from '../actions/renderer/preferences';
 
 const { extendDefaultPlugins } = require('svgo');
 

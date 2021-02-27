@@ -3,7 +3,7 @@
 import { ipcRenderer } from 'electron';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import AppConfig from '../config';
+import AppConfig from '../../config';
 
 const MenuTrigger = () => {
   const history = useHistory();

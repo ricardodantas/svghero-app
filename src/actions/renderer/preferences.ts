@@ -1,5 +1,5 @@
-import { PreferenceInputs } from '../libs/preferences';
-import { storePreferences } from '../libs/store';
+import { PreferenceInputs } from '../../libs/preferences';
+import { storePreferences } from '../../libs/store';
 
 export function setPreference(preference: PreferenceInputs): void {
   storePreferences.set(preference.name, preference);

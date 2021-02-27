@@ -7,6 +7,7 @@ import {
 } from 'electron';
 import translate from './localization/translate';
 import AppConfig from './config';
+import checkForUpdates, { canUpdate } from './actions/main/checkForUpdates';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -56,14 +57,19 @@ export default class MenuBuilder {
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: AppConfig.appName,
+      label: app.getName(),
       submenu: [
         {
-          label: `${translate('About')} ${AppConfig.appName}`,
+          label: `${translate('About')} ${app.getName()}`,
           selector: 'orderFrontStandardAboutPanel:',
         },
-        // { type: 'separator' },
+        { type: 'separator' },
         // { label: 'Services', submenu: [] },
+        {
+          label: `${translate('Check for Updates')}...`,
+          enabled: canUpdate(),
+          click: (menuItem) => checkForUpdates(menuItem),
+        },
         { type: 'separator' },
         {
           label: `${translate('Preferences')}`,
@@ -77,7 +83,7 @@ export default class MenuBuilder {
         },
         { type: 'separator' },
         {
-          label: `${translate('Hide')} ${AppConfig.appName}`,
+          label: `${translate('Hide')} ${app.getName()}`,
           accelerator: 'Command+H',
           selector: 'hide:',
         },

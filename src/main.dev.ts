@@ -16,17 +16,23 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import AppConfig from './config';
+import initNotificationListener from './libs/main/notification';
+import initDialogListener from './libs/main/dialog';
 
 const Store = require('electron-store');
 
 app.setAboutPanelOptions({
-  applicationName: AppConfig.appName,
-  applicationVersion: AppConfig.version,
+  applicationName: app.getName(),
+  applicationVersion: app.getVersion(),
   credits: AppConfig.credits,
   authors: AppConfig.authors,
   website: AppConfig.website,
 });
 
+Store.initRenderer();
+
+initNotificationListener();
+initDialogListener();
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -78,18 +84,17 @@ const createWindow = async () => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
-  Store.initRenderer();
-
   mainWindow = new BrowserWindow({
     show: false,
     width: process.env.NODE_ENV === 'development' ? 1024 : 528,
     height: 728,
     icon: getAssetPath('icon.png'),
-    title: AppConfig.appName,
+    title: app.getName(),
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation: false,
     },
   });
 

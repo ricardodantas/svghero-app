@@ -1,5 +1,5 @@
-import { showSuccessNotification } from '../libs/notifications';
-import { ALLOWED_FILE_EXTENSIONS } from '../libs/svg';
+import { showSuccessNotification } from '../../libs/renderer/notifications';
+import { ALLOWED_FILE_EXTENSIONS } from '../../libs/svg';
 import onError from './onError';
 import startSvgOptimization from './startSvgOptimization';
 

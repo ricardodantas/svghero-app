@@ -1,5 +1,5 @@
-import { storePreferences } from '../libs/store';
-import { setSvgoSettings, SvgOptimizer, SvgoSettings } from '../libs/svg';
+import { storePreferences } from '../../libs/store';
+import { setSvgoSettings, SvgOptimizer, SvgoSettings } from '../../libs/svg';
 
 export type SettingsOptimization = {
   svgo: SvgoSettings;
