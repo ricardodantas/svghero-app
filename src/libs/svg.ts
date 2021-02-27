@@ -7,6 +7,8 @@ const path = require('path');
 const { extendDefaultPlugins, optimize } = require('svgo');
 
 export const ALLOWED_FILE_EXTENSIONS = ['.svg'];
+export const ALLOWED_FILE_MIME_TYPES = ['image/svg+xml'];
+
 export const DEFAULT_FILE_SUFFIX = '.min';
 export const DEFAULT_SVGO_SETTINGS: SVGO.Options = {
   multipass: true,

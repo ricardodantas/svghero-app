@@ -1,19 +1,15 @@
 import { showSuccessNotification } from '../libs/notifications';
+import { ALLOWED_FILE_MIME_TYPES } from '../libs/svg';
 import onError from './onError';
 import startSvgOptimization from './startSvgOptimization';
 
-export default function onFilesDropped(event: DragEvent) {
+export default function onFilesDropped(selectedFiles: File[]) {
   try {
-    if (!event.dataTransfer?.files) {
-      return;
-    }
-    const selectedFiles: string[] = [];
-    // eslint-disable-next-line no-restricted-syntax
-    for (const f of event.dataTransfer.files) {
-      selectedFiles.push(f.path);
-    }
     if (selectedFiles?.length) {
-      const optimizedFiles = startSvgOptimization(selectedFiles);
+      const acceptedFiles = selectedFiles
+        .filter((file) => ALLOWED_FILE_MIME_TYPES.includes(file.type))
+        .map((file) => file.path);
+      const optimizedFiles = startSvgOptimization(acceptedFiles);
       showSuccessNotification(
         optimizedFiles.map((optimizedFile) => optimizedFile.path)
       );
