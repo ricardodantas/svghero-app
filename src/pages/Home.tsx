@@ -3,17 +3,14 @@ import { Icon } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
-import { app } from 'electron';
 import icon from '../../assets/icon.svg';
 
-import onSelectFilesClick from '../actions/renderer/onSelectFilesClick';
 import onFilesDropped from '../actions/renderer/onFilesDropped';
 import translate from '../localization/translate';
 import AppConfig from '../config';
 import initMenuTrigger from '../actions/renderer/initMenuTrigger';
 import DropZone from '../components/DropZone';
 
-const electron = window.require('electron');
 const Header = styled.div`
   display: flex;
   justify-content: center;
@@ -44,7 +41,6 @@ const Home = () => {
     <DropZone onFilesDropped={onFilesDropped}>
       <Header>
         <img width="200px" alt="icon" src={icon} />
-        <h1>{electron.remote.app.getName()}</h1>
       </Header>
       <Container>
         {/* <a
@@ -54,10 +50,7 @@ const Home = () => {
         >
           some link
         </a> */}
-        <button type="button" onClick={onSelectFilesClick}>
-          {/* <span role="img" aria-label="download">
-            ⬇️
-          </span> */}
+        <button type="button">
           <Icon icon={IconNames.DOCUMENT_OPEN} iconSize={Icon.SIZE_LARGE} />{' '}
           {translate('select_svg_files')}
         </button>
@@ -66,6 +59,7 @@ const Home = () => {
       <ButtonPreferences
         to={AppConfig.routes.preferences}
         title={`${translate('Preferences')}`}
+        onClick={(e) => e.stopPropagation()}
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
       </ButtonPreferences>

@@ -6,16 +6,21 @@ export type TriggerDialogType = {
   message: string;
 };
 
-export function triggerDialog(dialogParams: TriggerDialogType) {
+export function triggerDialogBox(dialogParams: TriggerDialogType) {
   return dialog.showMessageBoxSync({
     type: dialogParams.type,
     message: dialogParams.message,
   });
 }
-export default function initDialogListener() {
+
+export function initDialogBox() {
   ipcMain.handle(
     AppConfig.ipcChannels.triggerDialog,
     (_event: Electron.IpcMainInvokeEvent, dialogParams: TriggerDialogType) =>
-      triggerDialog(dialogParams)
+      triggerDialogBox(dialogParams)
   );
+}
+
+export default function initDialogListener() {
+  initDialogBox();
 }

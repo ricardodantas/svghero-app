@@ -93,7 +93,7 @@ const createWindow = async () => {
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
+      enableRemoteModule: false,
       contextIsolation: false,
     },
   });
