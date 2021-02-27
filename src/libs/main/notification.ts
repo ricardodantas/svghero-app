@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { ipcMain, shell } from 'electron';
 import AppConfig from '../../config';
 import {
@@ -19,8 +20,6 @@ async function onClickHandler(onClickParams?: OnClickParams) {
         if (onClickParams.filePath)
           await shell.openPath(onClickParams.filePath);
         break;
-      default:
-        console.log('Action not available.');
     }
   }
 }

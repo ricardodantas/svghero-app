@@ -1,4 +1,3 @@
-import AppError from '../../libs/errors';
 import { showSuccessNotification } from '../../libs/renderer/notifications';
 import { ALLOWED_FILE_MIME_TYPES } from '../../libs/svg';
 import onError from './onError';

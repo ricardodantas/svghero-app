@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
