@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
+import { Button, Icon } from '@blueprintjs/core';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
@@ -24,22 +25,48 @@ const DropFilesHere = () => {
   );
 };
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+`;
+
 export default function DropZone({ children, onFilesDropped }: DropZoneType) {
   const onDrop = useCallback((acceptedFiles) => {
     onFilesDropped(acceptedFiles);
   }, []);
-  const { getRootProps, isDragActive, getInputProps } = useDropzone({
+  const { getRootProps, isDragActive, getInputProps, open } = useDropzone({
     onDrop,
     accept: ALLOWED_FILE_MIME_TYPES.join(','),
+    noClick: true,
+    noKeyboard: true,
   });
 
   return (
     <div
-      className="no-scroll height-size-full align-center-xy flex-direction-column"
+      className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark"
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      {isDragActive ? <DropFilesHere /> : children}
+      {isDragActive ? (
+        <DropFilesHere />
+      ) : (
+        <Container>
+          {children}
+          <Button
+            icon="document-open"
+            type="button"
+            onClick={open}
+            intent="primary"
+            large
+          >
+            {translate('select_svg_files')}
+          </Button>
+          <p>{translate('drop_files_here')}</p>
+        </Container>
+      )}
     </div>
   );
 }

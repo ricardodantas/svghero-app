@@ -19,14 +19,6 @@ const Header = styled.div`
   margin: 20px 0;
 `;
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px 0;
-`;
-
 const ButtonPreferences = styled(Link)`
   position: fixed;
   top: 0;
@@ -38,32 +30,19 @@ const Home = () => {
   initMenuTrigger();
 
   return (
-    <DropZone onFilesDropped={onFilesDropped}>
-      <Header>
-        <img width="200px" alt="icon" src={icon} />
-      </Header>
-      <Container>
-        {/* <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          some link
-        </a> */}
-        <button type="button">
-          <Icon icon={IconNames.DOCUMENT_OPEN} iconSize={Icon.SIZE_LARGE} />{' '}
-          {translate('select_svg_files')}
-        </button>
-        <p>{translate('drop_files_here')}</p>
-      </Container>
+    <>
+      <DropZone onFilesDropped={onFilesDropped}>
+        <Header>
+          <img width="200px" alt="icon" src={icon} />
+        </Header>
+      </DropZone>
       <ButtonPreferences
         to={AppConfig.routes.preferences}
         title={`${translate('Preferences')}`}
-        onClick={(e) => e.stopPropagation()}
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
       </ButtonPreferences>
-    </DropZone>
+    </>
   );
 };
 

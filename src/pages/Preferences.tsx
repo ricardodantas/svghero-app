@@ -22,7 +22,6 @@ const FixedBar = styled.div`
   left: 0;
   width: 100%;
   padding: 15px;
-  background-color: var(--body-background-color);
   z-index: 1;
 `;
 
@@ -81,7 +80,7 @@ export default function Preferences() {
 
   return (
     <div className="height-size-full padding-medium-xy">
-      <FixedBar>
+      <FixedBar className="body-background-color">
         <Header>
           <TitleWrapper>
             <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />

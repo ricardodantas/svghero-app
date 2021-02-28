@@ -64,13 +64,6 @@ export default class MenuBuilder {
           selector: 'orderFrontStandardAboutPanel:',
         },
         { type: 'separator' },
-        // { label: 'Services', submenu: [] },
-        {
-          label: `${translate('Check for Updates')}...`,
-          enabled: canUpdate(),
-          click: (menuItem) => checkForUpdates(menuItem),
-        },
-        { type: 'separator' },
         {
           label: `${translate('Preferences')}`,
           accelerator: 'Command+,',
@@ -80,6 +73,13 @@ export default class MenuBuilder {
               AppConfig.routes.preferences
             );
           },
+        },
+        // { label: 'Services', submenu: [] },
+        { type: 'separator' },
+        {
+          label: `${translate('Check for Updates')}...`,
+          enabled: canUpdate(),
+          click: (menuItem) => checkForUpdates(menuItem),
         },
         { type: 'separator' },
         {
