@@ -90,8 +90,7 @@
       "provider": "github",
       "owner": "ricardodantas",
       "repo": "svghero-app",
-      "private": true,
-      "token": "d7507f5717b13513c4bb3b6c7bddf7b384dfbda7"
+      "private": true
     }
   },
   "repository": {

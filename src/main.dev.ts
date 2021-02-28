@@ -29,6 +29,11 @@ app.setAboutPanelOptions({
   website: AppConfig.website,
 });
 
+// Auto update settings
+const server = 'https://update.svghero.app';
+const feed = `${server}/update/${process.platform}/${app.getVersion()}`;
+autoUpdater.setFeedURL(feed);
+
 Store.initRenderer();
 
 initNotificationListener();
