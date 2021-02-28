@@ -180,7 +180,7 @@ export default class MenuBuilder {
         {
           label: translate('Report an issue'),
           click() {
-            shell.openExternal(`${AppConfig.website}/report/issue`);
+            shell.openExternal(`${AppConfig.website}/report-issue`);
           },
         },
       ],
