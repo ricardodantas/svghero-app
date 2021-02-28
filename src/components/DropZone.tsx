@@ -4,6 +4,7 @@ import { Button, Icon } from '@blueprintjs/core';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
+import { IconNames } from '@blueprintjs/icons';
 import { ALLOWED_FILE_MIME_TYPES } from '../libs/svg';
 import translate from '../localization/translate';
 
@@ -15,11 +16,17 @@ type DropZoneType = {
 const Message = styled.div({
   fontWeight: 'bold',
   fontSize: '25px',
+  marginTop: 20,
 });
 
 const DropFilesHere = () => {
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column">
+      <Icon
+        icon={IconNames.DOWNLOAD}
+        iconSize={Icon.SIZE_LARGE}
+        className="animate__infinite animate__animated animate__fadeInDown"
+      />
       <Message>{translate('drop_files_now')}</Message>
     </div>
   );

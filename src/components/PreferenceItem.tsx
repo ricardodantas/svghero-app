@@ -6,7 +6,8 @@ import { PreferenceItemProps } from '../libs/preferences';
 
 const Container = styled.div`
   display: flex;
-  border-bottom: 1px solid #444;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   align-items: center;
   padding: 20px 0;
   &:last-child {
@@ -45,7 +46,7 @@ const PreferenceItem = ({
   };
 
   return (
-    <Container>
+    <Container className="border-color">
       <Description>{translate(description)}</Description>
       <ToggleWrapper>
         <Switch

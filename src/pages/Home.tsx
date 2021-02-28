@@ -16,7 +16,7 @@ const Header = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 20px 0 40px;
 `;
 
 const ButtonPreferences = styled(Link)`
@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <>
       <DropZone onFilesDropped={onFilesDropped}>
-        <Header>
+        <Header className="animate__animated animate__fadeIn">
           <img width="200px" alt="icon" src={icon} />
         </Header>
       </DropZone>

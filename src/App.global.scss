@@ -7,37 +7,11 @@
 @import '~@blueprintjs/core/lib/scss/variables.scss';
 @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+@import '~animate.css';
 
-:root {
-  // color-scheme: light dark;
-}
-
-.body-background-color {
-  background-color: $dark-gray1;
-}
-
-.button-icon-only-color {
-  color: $dark-gray2;
-}
-
-:focus,
-:active {
-  outline: none;
-  outline-offset: 0;
-  outline-color: transparent;
-  box-shadow: none;
-}
-
-.bp3-control {
-  @extend .bp3-control;
-  margin-bottom: 0;
-}
-
-.bp3-input {
-  background-color: $dark-gray2;
-  outline: none;
-  color: $white;
-}
+// :root {
+//   color-scheme: light dark;
+// }
 
 body {
   position: relative;
@@ -50,33 +24,6 @@ body {
 p {
   margin: 15px 0;
 }
-
-.height-size-full {
-  height: 100vh;
-}
-
-.no-scroll {
-  overflow-y: hidden;
-}
-.flex-direction-column {
-  flex-direction: column;
-}
-.flex-direction-row {
-  flex-direction: row;
-}
-.align-center-xy {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.padding-small-xy {
-  padding: 5px;
-}
-
-.padding-medium-xy {
-  padding: 15px;
-}
-
 // @media (prefers-color-scheme: dark) {
 //   body {
 //     color: #eee;
@@ -106,15 +53,61 @@ button:hover {
   transform: scale(1.05);
 }
 
-// a {
-//   text-decoration: none;
-//   color: #888;
-//   &:hover {
-//     color: #999;
-//   }
-// }
+.body-background-color {
+  background-color: $dark-gray1;
+}
 
-// a:hover {
-//   opacity: 1;
-//   text-decoration: none;
-// }
+.button-icon-only-color {
+  color: $dark-gray2;
+}
+.border-color {
+  border-top-color: $dark-gray3;
+  border-bottom-color: $dark-gray3;
+  border-left-color: $dark-gray3;
+  border-right-color: $dark-gray3;
+}
+
+:focus,
+:active {
+  outline: none;
+  outline-offset: 0;
+  outline-color: transparent;
+  box-shadow: none;
+}
+
+.bp3-control {
+  @extend .bp3-control;
+  margin-bottom: 0;
+}
+
+.bp3-input {
+  background-color: $dark-gray2;
+  outline: none;
+  color: $white;
+}
+
+.height-size-full {
+  height: 100vh;
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+.flex-direction-column {
+  flex-direction: column;
+}
+.flex-direction-row {
+  flex-direction: row;
+}
+.align-center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.padding-small-xy {
+  padding: 5px;
+}
+
+.padding-medium-xy {
+  padding: 15px;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, InputGroup } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
@@ -54,6 +54,7 @@ const Rows = styled.div({
 });
 
 export default function Preferences() {
+  const mainContainerRef = useRef();
   const savedPreferences = defaultSvgPlugins.map((svgoPlugin) =>
     getPreference(svgoPlugin.name, {
       name: svgoPlugin.name,
@@ -64,6 +65,16 @@ export default function Preferences() {
   );
 
   const [items, setItems] = useState<PreferenceInputs[]>([...savedPreferences]);
+
+  useEffect(() => {
+    if (mainContainerRef?.current) {
+      mainContainerRef.current.addEventListener('animationend', () => {
+        mainContainerRef.current.classList.remove('animate__fadeInUp');
+        mainContainerRef.current.removeEventListener('animationend', () => {});
+      });
+    }
+  }, [mainContainerRef]);
+
   function keyUpHandler(event: React.KeyboardEvent<HTMLInputElement>) {
     setItems(
       savedPreferences.filter(
@@ -79,7 +90,10 @@ export default function Preferences() {
   }
 
   return (
-    <div className="height-size-full padding-medium-xy">
+    <div
+      ref={mainContainerRef}
+      className="height-size-full padding-medium-xy animate__animated animate__fadeInUp"
+    >
       <FixedBar className="body-background-color">
         <Header>
           <TitleWrapper>
