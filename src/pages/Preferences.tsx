@@ -108,6 +108,7 @@ export default function Preferences() {
           <InputGroup
             leftIcon={IconNames.SEARCH}
             placeholder="Search"
+            type="search"
             fill
             onKeyUp={keyUpHandler}
           />
