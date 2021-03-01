@@ -75,8 +75,7 @@ export default function LicenseWindow() {
   const storedLicense = getLicenseKey();
 
   if (
-    storedLicense &&
-    storedLicense !== AppConfig.trialPeriodLicenseValue &&
+    storedLicense?.buyer_email?.length &&
     storedLicense?.buyer_email !== AppConfig.trialPeriodLicenseValue
   ) {
     return <RegisteredContainer storedLicense={storedLicense} />;
