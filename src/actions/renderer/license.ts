@@ -1,4 +1,4 @@
-import { LICENSE_KEY } from '../../libs/license';
+import { LicenseKeyAPiResponse, LICENSE_KEY } from '../../libs/license';
 import { storeUserInfo } from '../../libs/store';
 import AppConfig from '../../config';
 import onError from './onError';
@@ -39,15 +39,6 @@ export function getLicenseKey() {
 export function setLicenseKey(licenseKey: string) {
   return storeUserInfo.set(LICENSE_KEY, licenseKey);
 }
-
-export type LicenseKeyAPiResponse = {
-  enabled: boolean;
-  product_link: string;
-  license_key: string;
-  buyer_email: string;
-  uses: number;
-  date: string;
-};
 
 export async function isValidLicenseKey(
   email: string,

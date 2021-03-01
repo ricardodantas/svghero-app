@@ -44,5 +44,6 @@
   "activate_license_screen_buy_license": "buy a license",
   "activate_license_screen_instructions": "Type or paste the license key here",
   "activate_license_screen_thankyou": "Thank you for supporting this app!",
-  "activate": "Activate"
+  "activate": "Activate",
+  "license_key_registered_to": "Registered to"
 }
