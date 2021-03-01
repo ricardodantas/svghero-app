@@ -1,6 +1,5 @@
+import { LICENSE_KEY } from '../license';
 import { storeUserInfo } from '../store';
-
-const LICENSE_KEY = 'licenseKey';
 
 export function canActivateLicense() {
   const licenseValue = storeUserInfo.get(LICENSE_KEY);

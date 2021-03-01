@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '@blueprintjs/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
 import icon from '../../assets/icon.svg';
@@ -10,6 +10,7 @@ import translate from '../localization/translate';
 import AppConfig from '../config';
 import initMenuTrigger from '../actions/renderer/initMenuTrigger';
 import DropZone from '../components/DropZone';
+import { getLicenseKey, setFirstUseDate } from '../actions/renderer/license';
 
 const Header = styled.div`
   display: flex;
@@ -28,6 +29,12 @@ const ButtonPreferences = styled(Link)`
 
 const Home = () => {
   initMenuTrigger();
+  setFirstUseDate();
+  const history = useHistory();
+  if (!getLicenseKey()) {
+    history.push(AppConfig.routes.activateLicense);
+    return null;
+  }
 
   return (
     <>

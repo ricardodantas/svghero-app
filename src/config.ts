@@ -2,6 +2,8 @@ const config = Object.freeze({
   website: 'https://svghero.app',
   credits: 'Ricardo Dantas Gonçalves',
   authors: ['Ricardo Dantas Gonçalves'],
+  trialPeriodDays: 7,
+  trialPeriodLicenseValue: 'TRIAL_PERIOD',
   routes: {
     home: '/',
     preferences: '/preferences',
