@@ -36,7 +36,7 @@ export function getLicenseKey() {
   return storeUserInfo.get(LICENSE_KEY);
 }
 
-export function setLicenseKey(licenseKey: string) {
+export function setLicenseKey(licenseKey: LicenseKeyAPiResponse) {
   return storeUserInfo.set(LICENSE_KEY, licenseKey);
 }
 

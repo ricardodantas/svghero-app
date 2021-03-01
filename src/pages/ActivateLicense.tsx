@@ -85,7 +85,7 @@ export default function LicenseWindow() {
   async function saveLicenseSettings() {
     const validLicenseKey = await isValidLicenseKey(email, licenseKey);
     if (validLicenseKey) {
-      setLicenseKey(validLicenseKey.license_key);
+      setLicenseKey(validLicenseKey);
       triggerDialog('info', translate('activate_license_screen_thankyou'));
       history.push(AppConfig.routes.home);
     }
