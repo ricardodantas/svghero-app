@@ -5,6 +5,7 @@ const config = Object.freeze({
   routes: {
     home: '/',
     preferences: '/preferences',
+    activateLicense: '/activateLicense',
   },
   ipcChannels: {
     triggerDialog: 'TRIGGER_DIALOG',
