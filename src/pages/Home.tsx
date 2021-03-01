@@ -26,6 +26,7 @@ const ButtonPreferences = styled(Link)`
   left: 0;
   padding: 15px;
 `;
+const Logo = styled.img({ width: 200 });
 
 const Home = () => {
   initMenuTrigger();
@@ -40,7 +41,7 @@ const Home = () => {
     <>
       <DropZone onFilesDropped={onFilesDropped}>
         <Header className="animate__animated animate__fadeIn">
-          <img width="200px" alt="icon" src={icon} />
+          <Logo src={icon} />
         </Header>
       </DropZone>
       <ButtonPreferences
