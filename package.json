@@ -55,14 +55,18 @@
       "gatekeeperAssess": false
     },
     "dmg": {
+      "window": {
+        "width": "400",
+        "height": "300"
+      },
       "contents": [
         {
-          "x": 130,
-          "y": 220
+          "x": 100,
+          "y": 100
         },
         {
-          "x": 410,
-          "y": 220,
+          "x": 300,
+          "y": 100,
           "type": "link",
           "path": "/Applications"
         }
