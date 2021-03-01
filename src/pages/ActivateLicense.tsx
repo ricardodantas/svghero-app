@@ -38,21 +38,23 @@ export default function LicenseWindow() {
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
-        <h1>{translate('license_window_title')}</h1>
-        <Text>{translate('license_window_paragraph1')}</Text>
+        <h1>{translate('activate_license_screen_title')}</h1>
+        <Text>{translate('activate_license_screen_paragraph1')}</Text>
 
         <InputsWrapper>
           <InputGroup leftIcon={IconNames.ENVELOPE} placeholder="Email" fill />
-          <TextArea fill placeholder={translate('license_key')} />
+          <TextArea
+            fill
+            placeholder={translate('activate_license_screen_instructions')}
+          />
         </InputsWrapper>
-
         <ButtonStyled
           type="button"
           onClick={saveLicenseSettings}
-          intent="primary"
+          intent="success"
           large
         >
-          {translate('activate_license')}
+          {translate('activate')}
         </ButtonStyled>
       </Container>
     </div>

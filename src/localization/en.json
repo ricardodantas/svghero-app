@@ -36,5 +36,13 @@
   "notification_title_files_optimized": "Files Optimized",
   "notification_title_file_optimized": "File Optimized",
   "notification_message_files_optimized": "files optimized",
-  "notification_message_file_optimized": "files optimized"
+  "notification_message_file_optimized": "files optimized",
+  "license_key": "License Key",
+  "activate_license": "Activate License",
+  "activate_license_screen_title": "Activate License",
+  "activate_license_screen_paragraph1": "",
+  "activate_license_screen_buy_license": "buy a license",
+  "activate_license_screen_instructions": "Type or paste the license key here",
+  "activate_license_screen_thankyou": "Thank you for supporting this app!",
+  "activate": "Activate"
 }
