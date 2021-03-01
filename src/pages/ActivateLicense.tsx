@@ -1,11 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/jsx-props-no-spreading */
 import { Button, InputGroup, TextArea } from '@blueprintjs/core';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IconNames } from '@blueprintjs/icons';
-
+import { useHistory } from 'react-router-dom';
 import translate from '../localization/translate';
+import { isValidLicenseKey, setLicenseKey } from '../actions/renderer/license';
+import triggerDialog from '../libs/renderer/dialog';
+import AppConfig from '../config';
 
 const Text = styled.div({
   margin: '20px 0',
@@ -34,17 +35,34 @@ const InputsWrapper = styled.div({
 });
 
 export default function LicenseWindow() {
-  function saveLicenseSettings() {}
+  const history = useHistory();
+  const [email, setEmail] = useState<string>('');
+  const [licenseKey, setLicenseKeyField] = useState<string>('');
+  async function saveLicenseSettings() {
+    const validLicenseKey = await isValidLicenseKey(email, licenseKey);
+    if (validLicenseKey) {
+      setLicenseKey(validLicenseKey.license_key);
+      triggerDialog('info', translate('activate_license_screen_thankyou'));
+      history.push(AppConfig.routes.home);
+    }
+  }
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
         <h1>{translate('activate_license_screen_title')}</h1>
         <Text>{translate('activate_license_screen_paragraph1')}</Text>
-
         <InputsWrapper>
-          <InputGroup leftIcon={IconNames.ENVELOPE} placeholder="Email" fill />
+          <InputGroup
+            onKeyUp={(e) => setEmail(e.currentTarget.value)}
+            leftIcon={IconNames.ENVELOPE}
+            placeholder="Email"
+            fill
+            required
+          />
           <TextArea
             fill
+            required
+            onKeyUp={(e) => setLicenseKeyField(e.currentTarget.value)}
             placeholder={translate('activate_license_screen_instructions')}
           />
         </InputsWrapper>

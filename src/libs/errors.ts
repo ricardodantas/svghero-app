@@ -6,5 +6,6 @@ export default class AppError extends Error {
   constructor(type: ErrorTypes, message: string) {
     super(message);
     this.type = type;
+    this.message = message;
   }
 }
