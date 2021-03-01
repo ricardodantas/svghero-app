@@ -8,6 +8,7 @@ import {
 import translate from './localization/translate';
 import AppConfig from './config';
 import checkForUpdates, { canUpdate } from './actions/main/checkForUpdates';
+import { canActivateLicense } from './libs/main/licenseActivation';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -77,9 +78,20 @@ export default class MenuBuilder {
         // { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: `${translate('Check for Updates')}...`,
+          label: `${translate('Check for Updates')}`,
           enabled: canUpdate(),
           click: (menuItem) => checkForUpdates(menuItem),
+        },
+        { type: 'separator' },
+        {
+          label: `${translate('activate_license')}`,
+          enabled: canActivateLicense(),
+          click: () => {
+            this.mainWindow.webContents.send(
+              AppConfig.ipcChannels.reactRouterGoTo,
+              AppConfig.routes.preferences
+            );
+          },
         },
         { type: 'separator' },
         {
