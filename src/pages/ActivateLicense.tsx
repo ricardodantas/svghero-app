@@ -92,7 +92,7 @@ export default function LicenseWindow() {
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
-        <h1>{translate('activate_license_screen_title')}</h1>
+        <h1 className="title">{translate('activate_license_screen_title')}</h1>
         <Text>{translate('activate_license_screen_paragraph1')}</Text>
         <InputsWrapper>
           <InputGroup
@@ -112,7 +112,7 @@ export default function LicenseWindow() {
         <ButtonStyled
           type="button"
           onClick={saveLicenseSettings}
-          intent="success"
+          intent="primary"
           large
         >
           {translate('activate')}

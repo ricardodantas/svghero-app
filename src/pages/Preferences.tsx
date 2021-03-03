@@ -96,7 +96,7 @@ export default function Preferences() {
     >
       <FixedBar className="body-background-color">
         <Header>
-          <TitleWrapper>
+          <TitleWrapper className="title">
             <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
             <h1>{translate('Preferences')}</h1>
           </TitleWrapper>

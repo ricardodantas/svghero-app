@@ -21,7 +21,7 @@ const Message = styled.div({
 
 const DropFilesHere = () => {
   return (
-    <div className="no-scroll height-size-full align-center-xy flex-direction-column">
+    <div className="no-scroll height-size-full align-center-xy flex-direction-column title">
       <Icon
         icon={IconNames.DOWNLOAD}
         iconSize={Icon.SIZE_LARGE}
