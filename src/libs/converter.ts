@@ -21,6 +21,7 @@ export function convertTo(format: ConversionFormat, filePath: string) {
     case ConversionFormat.JPG:
       return sharp(filePath).jpeg().toFile(`${outputFilePath}`);
     default:
+      // eslint-disable-next-line no-console
       return console.log('Conversion: format not available.');
   }
 }
