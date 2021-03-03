@@ -1,5 +1,5 @@
-import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import React, { useState } from 'react';
+import { Alignment, Icon, Switch } from '@blueprintjs/core';
 import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
@@ -11,6 +11,7 @@ import AppConfig from '../config';
 import initMenuTrigger from '../actions/renderer/initMenuTrigger';
 import DropZone from '../components/DropZone';
 import { getLicenseKey, setFirstUseDate } from '../actions/renderer/license';
+import { ConversionFormat } from '../libs/converter';
 
 const Header = styled.div`
   display: flex;

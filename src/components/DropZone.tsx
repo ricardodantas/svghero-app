@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { IconNames } from '@blueprintjs/icons';
 import { ALLOWED_FILE_MIME_TYPES } from '../libs/svg';
 import translate from '../localization/translate';
+import ConversionOptions from './ConversionOptions';
 
 type DropZoneType = {
   onFilesDropped: (acceptedFiles: File[]) => void;
@@ -17,11 +18,13 @@ const Message = styled.div({
   fontWeight: 'bold',
   fontSize: '25px',
   marginTop: 20,
+  width: '100%',
+  textAlign: 'center',
 });
 
 const DropFilesHere = () => {
   return (
-    <div className="no-scroll height-size-full align-center-xy flex-direction-column title">
+    <div className="no-scroll height-size-full align-center-xy flex-direction-column">
       <Icon
         icon={IconNames.DOWNLOAD}
         iconSize={Icon.SIZE_LARGE}
@@ -72,6 +75,7 @@ export default function DropZone({ children, onFilesDropped }: DropZoneType) {
             {translate('select_svg_files')}
           </Button>
           <p>{translate('drop_files_here')}</p>
+          <ConversionOptions />
         </Container>
       )}
     </div>
