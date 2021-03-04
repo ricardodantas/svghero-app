@@ -34,6 +34,7 @@ const Logo = styled.img({ width: 200 });
 const Home = () => {
   initMenuTrigger();
   setFirstUseDate();
+
   const { selectedFormats } = useContext(ExportOptionsContext);
   function setSelectedFormats(selectedFormatsInput: ExportFormat[]) {
     storeExportPreferences.set(

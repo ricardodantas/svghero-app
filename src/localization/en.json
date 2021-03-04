@@ -47,5 +47,8 @@
   "activate": "Activate",
   "license_key_registered_to": "Registered to",
   "convert_to_png": "Convert to PNG",
-  "convert_to_jpg": "Convert to JPG"
+  "convert_to_jpg": "Convert to JPG",
+  "convert_to_tiff": "Convert to TIFF",
+  "convert_to_webp": "Convert to WEBP",
+  "convert_to_tile": "Convert to TILE"
 }
