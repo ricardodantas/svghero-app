@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
