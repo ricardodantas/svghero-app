@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 20px;
   flex-direction: column;
+  padding-top: 30px;
 `;
 
 export default function ExportOptions() {
@@ -43,7 +44,7 @@ export default function ExportOptions() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper className="border-top">
       {Object.keys(ExportFormat).map((format) => {
         return (
           <ToggleWrapper key={format}>

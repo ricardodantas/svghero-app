@@ -33,6 +33,10 @@ p {
 .title {
   color: $pt-link-color;
 }
+
+.border-top {
+  border-top: 1px solid $dark-gray3;
+}
 // @media (prefers-color-scheme: dark) {
 //   body {
 //     color: #eee;
