@@ -4,7 +4,52 @@ import translate from '../../localization/translate';
 import AppConfig from '../../config';
 import { NotificationOnClickAction } from '../notification';
 
-// eslint-disable-next-line import/prefer-default-export
+export function showSuccessExportNotification({
+  selectedFormatsForExport,
+  optimizedFilePaths,
+}: {
+  selectedFormatsForExport: string[];
+  optimizedFilePaths: string[];
+}) {
+  const totalFilesExported =
+    optimizedFilePaths.length * selectedFormatsForExport.length;
+
+  const onClick =
+    optimizedFilePaths.length > 1
+      ? {
+          action: NotificationOnClickAction.openFolder,
+          filePath: dirname(optimizedFilePaths[0]),
+        }
+      : {
+          action: NotificationOnClickAction.openFile,
+          filePath: optimizedFilePaths[0],
+        };
+
+  const notificationTitle =
+    optimizedFilePaths.length > 1
+      ? `${optimizedFilePaths.length} ${translate(
+          'notification_title_files_exported'
+        )}`
+      : translate('notification_title_file_exported');
+
+  const notificationMessage =
+    totalFilesExported > 1
+      ? translate('notification_message_files_exported')
+      : translate('notification_message_file_exported');
+
+  const notificationParams = {
+    onClick,
+    title: notificationTitle,
+    body: `${notificationMessage} ${selectedFormatsForExport
+      .map((item: string) => item.toUpperCase())
+      .join(', ')}`,
+  };
+  ipcRenderer.invoke(
+    AppConfig.ipcChannels.triggerNotification,
+    notificationParams
+  );
+}
+
 export function showSuccessNotification(selectedFiles: string[]) {
   const notificationTitle =
     selectedFiles.length > 1
