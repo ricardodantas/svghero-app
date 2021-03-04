@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
@@ -11,6 +11,9 @@ import AppConfig from '../config';
 import initMenuTrigger from '../actions/renderer/initMenuTrigger';
 import DropZone from '../components/DropZone';
 import { getLicenseKey, setFirstUseDate } from '../actions/renderer/license';
+import ConversionOptionsContext from '../contexts/conversion';
+import { ConversionFormat } from '../libs/converter';
+import { storeExportPreferences } from '../libs/store';
 
 const Header = styled.div`
   display: flex;
@@ -31,6 +34,16 @@ const Logo = styled.img({ width: 200 });
 const Home = () => {
   initMenuTrigger();
   setFirstUseDate();
+  const { selectedFormats } = useContext(ConversionOptionsContext);
+  function setSelectedFormats(selectedFormatsInput: ConversionFormat[]) {
+    Object.keys(ConversionFormat).forEach((format) => {
+      storeExportPreferences.set(
+        ConversionFormat[format],
+        selectedFormatsInput?.includes(ConversionFormat[format])
+      );
+    });
+  }
+
   const history = useHistory();
   if (!getLicenseKey()) {
     history.push(AppConfig.routes.activateLicense);
@@ -38,7 +51,9 @@ const Home = () => {
   }
 
   return (
-    <>
+    <ConversionOptionsContext.Provider
+      value={{ selectedFormats, setSelectedFormats }}
+    >
       <DropZone onFilesDropped={onFilesDropped}>
         <Header className="animate__animated animate__fadeIn">
           <Logo src={icon} />
@@ -50,7 +65,7 @@ const Home = () => {
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
       </ButtonPreferences>
-    </>
+    </ConversionOptionsContext.Provider>
   );
 };
 

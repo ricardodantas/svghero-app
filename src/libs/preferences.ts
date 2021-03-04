@@ -1,6 +1,7 @@
 export enum PreferenceTypeSection {
   SVGO_PLUGINS = 'svgoPlugins',
   USER_INFO = 'userInfo',
+  EXPORT_PREFERENCES = 'exportPreferences',
 }
 
 export type PreferenceInputs = {

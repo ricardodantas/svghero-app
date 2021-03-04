@@ -1,7 +1,8 @@
 import { Alignment, Switch } from '@blueprintjs/core';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styled from 'styled-components';
+import ConversionOptionsContext from '../contexts/conversion';
 import { ConversionFormat } from '../libs/converter';
 import translate from '../localization/translate';
 
@@ -21,17 +22,28 @@ const Wrapper = styled.div`
 `;
 
 export default function ConversionOptions() {
+  const { selectedFormats, setSelectedFormats } = useContext(
+    ConversionOptionsContext
+  );
   const [conversionFormats, setConversionFormats] = useState<
     ConversionFormat[]
-  >([]);
+  >(
+    Object.keys(selectedFormats).filter(
+      (format) => selectedFormats[format] === true
+    ) as ConversionFormat[]
+  );
 
   function onToggleConversionFormat(format: ConversionFormat) {
     const foundFormat = conversionFormats.indexOf(format);
+    let conversionFormatValue = [];
     if (foundFormat >= 0) {
       conversionFormats.splice(foundFormat, 1);
-      return setConversionFormats([...conversionFormats]);
+      conversionFormatValue = [...conversionFormats];
+    } else {
+      conversionFormatValue = [...conversionFormats, format];
     }
-    return setConversionFormats([...conversionFormats, format]);
+    setConversionFormats(conversionFormatValue);
+    setSelectedFormats(conversionFormatValue);
   }
 
   return (
