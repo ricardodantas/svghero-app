@@ -3,7 +3,7 @@ name: Tests
 on: push
 
 jobs:
-  release:
+  Tests:
     runs-on: ubuntu-18.04
 
     steps:
