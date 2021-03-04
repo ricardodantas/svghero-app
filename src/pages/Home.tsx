@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
@@ -35,12 +35,26 @@ const Home = () => {
   initMenuTrigger();
   setFirstUseDate();
 
-  const { selectedFormats } = useContext(ExportOptionsContext);
-  function setSelectedFormats(selectedFormatsInput: ExportFormat[]) {
+  const [selectedFormats, setExportOptions] = useState(
+    storeExportPreferences.get(
+      AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS
+    )
+  );
+
+  function setSelectedFormats(format: ExportFormat) {
+    const foundFormat = selectedFormats.indexOf(format);
+    let conversionFormatValue: ExportFormat[] = [];
+    if (foundFormat >= 0) {
+      selectedFormats.splice(foundFormat, 1);
+      conversionFormatValue = [...selectedFormats] as ExportFormat[];
+    } else {
+      conversionFormatValue = [...selectedFormats, format] as ExportFormat[];
+    }
     storeExportPreferences.set(
       AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS,
-      selectedFormatsInput
+      conversionFormatValue
     );
+    setExportOptions(conversionFormatValue);
   }
 
   const history = useHistory();

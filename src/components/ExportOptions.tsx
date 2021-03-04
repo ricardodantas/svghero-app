@@ -1,5 +1,5 @@
 import { Alignment, Switch } from '@blueprintjs/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 import ExportOptionsContext from '../contexts/exportOptions';
@@ -26,22 +26,6 @@ export default function ExportOptions() {
   const { selectedFormats, setSelectedFormats } = useContext(
     ExportOptionsContext
   );
-  const [conversionFormats, setConversionFormats] = useState<ExportFormat[]>(
-    selectedFormats as ExportFormat[]
-  );
-
-  function onToggleConversionFormat(format: ExportFormat) {
-    const foundFormat = conversionFormats.indexOf(format);
-    let conversionFormatValue = [];
-    if (foundFormat >= 0) {
-      conversionFormats.splice(foundFormat, 1);
-      conversionFormatValue = [...conversionFormats];
-    } else {
-      conversionFormatValue = [...conversionFormats, format];
-    }
-    setConversionFormats(conversionFormatValue);
-    setSelectedFormats(conversionFormatValue);
-  }
 
   return (
     <Wrapper className="border-top">
@@ -49,10 +33,10 @@ export default function ExportOptions() {
         return (
           <ToggleWrapper key={format}>
             <Switch
-              checked={conversionFormats.includes(ExportFormat[format])}
+              checked={selectedFormats.includes(ExportFormat[format])}
               alignIndicator={Alignment.LEFT}
               large
-              onChange={() => onToggleConversionFormat(ExportFormat[format])}
+              onChange={() => setSelectedFormats(ExportFormat[format])}
               label={translate(`convert_to_${ExportFormat[format]}`)}
             />
           </ToggleWrapper>
