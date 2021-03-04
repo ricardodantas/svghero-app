@@ -262,7 +262,7 @@
     "regenerator-runtime": "^0.13.7",
     "source-map-support": "^0.5.19",
     "styled-components": "^5.2.1",
-    "svgo": "^2.0.3"
+    "svgo": "^2.2.0"
   },
   "devEngines": {
     "node": ">=10.x",
