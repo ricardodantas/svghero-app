@@ -11,9 +11,9 @@ import AppConfig from '../config';
 import initMenuTrigger from '../actions/renderer/initMenuTrigger';
 import DropZone from '../components/DropZone';
 import { getLicenseKey, setFirstUseDate } from '../actions/renderer/license';
-import ConversionOptionsContext from '../contexts/conversion';
-import { ConversionFormat } from '../libs/converter';
-import { storeExportPreferences } from '../libs/store';
+import ExportOptionsContext from '../contexts/exportOptions';
+import { ExportFormat } from '../libs/exporter';
+import { AVAILABLE_STORE_KEYS, storeExportPreferences } from '../libs/store';
 
 const Header = styled.div`
   display: flex;
@@ -34,14 +34,12 @@ const Logo = styled.img({ width: 200 });
 const Home = () => {
   initMenuTrigger();
   setFirstUseDate();
-  const { selectedFormats } = useContext(ConversionOptionsContext);
-  function setSelectedFormats(selectedFormatsInput: ConversionFormat[]) {
-    Object.keys(ConversionFormat).forEach((format) => {
-      storeExportPreferences.set(
-        ConversionFormat[format],
-        selectedFormatsInput?.includes(ConversionFormat[format])
-      );
-    });
+  const { selectedFormats } = useContext(ExportOptionsContext);
+  function setSelectedFormats(selectedFormatsInput: ExportFormat[]) {
+    storeExportPreferences.set(
+      AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS,
+      selectedFormatsInput
+    );
   }
 
   const history = useHistory();
@@ -51,7 +49,7 @@ const Home = () => {
   }
 
   return (
-    <ConversionOptionsContext.Provider
+    <ExportOptionsContext.Provider
       value={{ selectedFormats, setSelectedFormats }}
     >
       <DropZone onFilesDropped={onFilesDropped}>
@@ -65,7 +63,7 @@ const Home = () => {
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
       </ButtonPreferences>
-    </ConversionOptionsContext.Provider>
+    </ExportOptionsContext.Provider>
   );
 };
 

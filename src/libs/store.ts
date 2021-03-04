@@ -2,6 +2,12 @@ import { PreferenceTypeSection } from './preferences';
 
 const Store = require('electron-store');
 
+export const AVAILABLE_STORE_KEYS = {
+  [PreferenceTypeSection.EXPORT_PREFERENCES]: {
+    SELECTED_FORMATS: 'selectedFormats',
+  },
+};
+
 export const storePreferences = new Store({
   name: PreferenceTypeSection.SVGO_PLUGINS,
 });

@@ -2,8 +2,8 @@ import { Alignment, Switch } from '@blueprintjs/core';
 import React, { useContext, useState } from 'react';
 
 import styled from 'styled-components';
-import ConversionOptionsContext from '../contexts/conversion';
-import { ConversionFormat } from '../libs/converter';
+import ExportOptionsContext from '../contexts/exportOptions';
+import { ExportFormat } from '../libs/exporter';
 import translate from '../localization/translate';
 
 const ToggleWrapper = styled.div`
@@ -21,19 +21,15 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function ConversionOptions() {
+export default function ExportOptions() {
   const { selectedFormats, setSelectedFormats } = useContext(
-    ConversionOptionsContext
+    ExportOptionsContext
   );
-  const [conversionFormats, setConversionFormats] = useState<
-    ConversionFormat[]
-  >(
-    Object.keys(selectedFormats).filter(
-      (format) => selectedFormats[format] === true
-    ) as ConversionFormat[]
+  const [conversionFormats, setConversionFormats] = useState<ExportFormat[]>(
+    selectedFormats as ExportFormat[]
   );
 
-  function onToggleConversionFormat(format: ConversionFormat) {
+  function onToggleConversionFormat(format: ExportFormat) {
     const foundFormat = conversionFormats.indexOf(format);
     let conversionFormatValue = [];
     if (foundFormat >= 0) {
@@ -48,17 +44,15 @@ export default function ConversionOptions() {
 
   return (
     <Wrapper>
-      {Object.keys(ConversionFormat).map((format) => {
+      {Object.keys(ExportFormat).map((format) => {
         return (
           <ToggleWrapper key={format}>
             <Switch
-              checked={conversionFormats.includes(ConversionFormat[format])}
+              checked={conversionFormats.includes(ExportFormat[format])}
               alignIndicator={Alignment.LEFT}
               large
-              onChange={() =>
-                onToggleConversionFormat(ConversionFormat[format])
-              }
-              label={translate(`convert_to_${ConversionFormat[format]}`)}
+              onChange={() => onToggleConversionFormat(ExportFormat[format])}
+              label={translate(`convert_to_${ExportFormat[format]}`)}
             />
           </ToggleWrapper>
         );
