@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, InputGroup } from '@blueprintjs/core';
+import { Icon, InputGroup, Tab, Tabs } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
 
@@ -52,6 +52,28 @@ const Container = styled.div`
 const Rows = styled.div({
   margin: 0,
 });
+
+function SvgOptimizationSettings(props: {
+  items: any;
+  onUpdatePreferenceItem: any;
+}) {
+  const { items, onUpdatePreferenceItem } = props;
+  return (
+    <>
+      <Rows>
+        {items.map((item) => (
+          <PreferenceItem
+            description={item.description}
+            active={item.value as boolean}
+            name={item.name}
+            key={item.name}
+            onUpdate={onUpdatePreferenceItem}
+          />
+        ))}
+      </Rows>
+    </>
+  );
+}
 
 export default function Preferences() {
   const mainContainerRef = useRef();
@@ -115,17 +137,19 @@ export default function Preferences() {
         </SearchBar>
       </FixedBar>
       <Container>
-        <Rows>
-          {items.map((item) => (
-            <PreferenceItem
-              description={item.description}
-              active={item.value as boolean}
-              name={item.name}
-              key={item.name}
-              onUpdate={onUpdatePreferenceItem}
-            />
-          ))}
-        </Rows>
+        <Tabs animate id="PreferencesTabs" defaultSelectedTabId="svgo">
+          <Tab
+            id="svgo"
+            title="SVG Optimization"
+            panel={
+              <SvgOptimizationSettings
+                items={items}
+                onUpdatePreferenceItem={onUpdatePreferenceItem}
+              />
+            }
+          />
+          <Tabs.Expander />
+        </Tabs>
       </Container>
     </div>
   );
