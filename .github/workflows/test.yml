@@ -1,0 +1,27 @@
+name: Tests
+
+on: push
+
+jobs:
+  release:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Run lint and build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn run lint
+          yarn build
