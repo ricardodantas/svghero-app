@@ -40,7 +40,7 @@
   "license_key": "License Key",
   "activate_license": "Activate License",
   "activate_license_screen_title": "Activate License",
-  "activate_license_screen_paragraph1": "",
+  "activate_license_screen_paragraph1": "Please type or paste the license information you previously received on your order email.",
   "activate_license_screen_buy_license": "buy a license",
   "activate_license_screen_instructions": "Type or paste the license key here",
   "activate_license_screen_thankyou": "Thank you for supporting this app!",

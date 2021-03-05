@@ -15,6 +15,8 @@ import { LicenseKeyAPiResponse } from '../libs/license';
 
 const Text = styled.div({
   margin: '20px 0',
+  width: 328,
+  textAlign: 'center',
 });
 
 const Container = styled.div`
