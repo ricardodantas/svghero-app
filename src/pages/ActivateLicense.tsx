@@ -90,7 +90,7 @@ export default function LicenseWindow() {
     }
   }
   return (
-    <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
+    <div className="no-scroll height-size-full align-center-xy flex-direction-column animate__animated animate__fadeIn">
       <Container>
         <h1 className="title">{translate('activate_license_screen_title')}</h1>
         <Text>{translate('activate_license_screen_paragraph1')}</Text>
