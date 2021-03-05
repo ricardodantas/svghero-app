@@ -54,8 +54,8 @@ const Rows = styled.div({
 });
 
 function SvgOptimizationSettings(props: {
-  items: any;
-  onUpdatePreferenceItem: any;
+  items: PreferenceInputs[];
+  onUpdatePreferenceItem: (preference: PreferenceInputs) => void;
 }) {
   const { items, onUpdatePreferenceItem } = props;
   return (
