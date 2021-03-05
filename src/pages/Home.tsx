@@ -13,7 +13,11 @@ import DropZone from '../components/DropZone';
 import { getLicenseKey, setFirstUseDate } from '../actions/renderer/license';
 import ExportOptionsContext from '../contexts/exportOptions';
 import { ExportFormat } from '../libs/exporter';
-import { AVAILABLE_STORE_KEYS, storeExportPreferences } from '../libs/store';
+import {
+  defaultExportPreferences,
+  AVAILABLE_STORE_KEYS,
+  storeExportPreferences,
+} from '../libs/store';
 
 const Header = styled.div`
   display: flex;
@@ -37,7 +41,10 @@ const Home = () => {
 
   const [selectedFormats, setExportOptions] = useState(
     storeExportPreferences.get(
-      AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS
+      AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS,
+      defaultExportPreferences[
+        AVAILABLE_STORE_KEYS.exportPreferences.SELECTED_FORMATS
+      ]
     )
   );
 

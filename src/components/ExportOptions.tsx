@@ -33,7 +33,7 @@ export default function ExportOptions() {
         return (
           <ToggleWrapper key={format}>
             <Switch
-              checked={selectedFormats.includes(ExportFormat[format])}
+              checked={(selectedFormats || []).includes(ExportFormat[format])}
               alignIndicator={Alignment.LEFT}
               large
               onChange={() => setSelectedFormats(ExportFormat[format])}

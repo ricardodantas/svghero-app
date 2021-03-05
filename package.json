@@ -56,17 +56,17 @@
     },
     "dmg": {
       "window": {
-        "width": "400",
-        "height": "300"
+        "width": "540",
+        "height": "410"
       },
       "contents": [
         {
-          "x": 100,
-          "y": 100
+          "x": 150,
+          "y": 230
         },
         {
-          "x": 300,
-          "y": 100,
+          "x": 390,
+          "y": 230,
           "type": "link",
           "path": "/Applications"
         }
@@ -92,10 +92,9 @@
       "./assets/**"
     ],
     "publish": {
-      "provider": "github",
-      "owner": "ricardodantas",
-      "repo": "svghero-app",
-      "private": true
+      "provider": "s3",
+      "bucket": "svgHero-releases",
+      "region": "eu-west-1"
     }
   },
   "repository": {

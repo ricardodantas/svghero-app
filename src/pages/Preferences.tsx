@@ -101,8 +101,8 @@ export default function Preferences() {
     setItems(
       savedPreferences.filter(
         (item) =>
-          item.description?.includes(event.target.value) ||
-          item.name?.includes(event.target.value)
+          (item.description || '').includes(event.target.value) ||
+          (item.name || '').includes(event.target.value)
       )
     );
   }

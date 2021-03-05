@@ -12,6 +12,11 @@ export const storePreferences = new Store({
   name: PreferenceTypeSection.SVGO_PLUGINS,
 });
 
+export const defaultExportPreferences = {
+  [AVAILABLE_STORE_KEYS[PreferenceTypeSection.EXPORT_PREFERENCES]
+    .SELECTED_FORMATS]: [],
+};
+
 export const storeExportPreferences = new Store({
   name: PreferenceTypeSection.EXPORT_PREFERENCES,
 });
