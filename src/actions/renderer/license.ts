@@ -1,4 +1,4 @@
-import { LicenseKeyAPiResponse, LICENSE_KEY } from '../../libs/license';
+import { LICENSE_KEY } from '../../libs/license';
 import { storeUserInfo } from '../../libs/store';
 import AppConfig from '../../config';
 import onError from './onError';
@@ -35,6 +35,18 @@ export function getLicenseKey(): string | null {
     }
   }
   return storeUserInfo.get(LICENSE_KEY, null);
+}
+
+export function checkStoredLicense() {
+  const license = getLicenseKey();
+  if (AppConfig.trialPeriodLicenseValue === license) {
+    return true;
+  }
+  if (license !== null && license.length >= 30) {
+    return true;
+  }
+
+  return false;
 }
 
 export function setLicenseKey(licenseKey: string) {

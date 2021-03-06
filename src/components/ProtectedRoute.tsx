@@ -3,17 +3,16 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import AppConfig from '../config';
-import { getLicenseKey } from '../actions/renderer/license';
+import { checkStoredLicense } from '../actions/renderer/license';
 
 export default function ProtectedRoute({ component, ...rest }) {
   const Component = component;
-  const licenseKey = getLicenseKey();
-  const isValidLicenseKey = licenseKey !== null && licenseKey.length >= 30;
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        return isValidLicenseKey ? (
+        return checkStoredLicense() ? (
           <Component {...rest} {...props} />
         ) : (
           <Redirect

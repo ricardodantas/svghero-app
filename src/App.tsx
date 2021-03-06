@@ -7,8 +7,11 @@ import ActivateLicense from './pages/ActivateLicense';
 import AppConfig from './config';
 import './App.global.scss';
 import ProtectedRoute from './components/ProtectedRoute';
+import { setFirstUseDate } from './actions/renderer/license';
 
 export default function App() {
+  setFirstUseDate();
+
   return (
     <Router>
       <Switch>

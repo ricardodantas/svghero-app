@@ -56,5 +56,6 @@
   "notification_title_files_exported": "files exported",
   "notification_message_files_exported": "Files exported to",
   "notification_title_file_exported": "File exported",
-  "notification_message_file_exported": "File exported to"
+  "notification_message_file_exported": "File exported to",
+  "invalid_license": "Sorry, this is an invalid license."
 }

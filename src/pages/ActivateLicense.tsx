@@ -1,7 +1,6 @@
-import { Button, InputGroup, TextArea } from '@blueprintjs/core';
+import { Button, TextArea } from '@blueprintjs/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { IconNames } from '@blueprintjs/icons';
 import { useHistory } from 'react-router-dom';
 import translate from '../localization/translate';
 import {
@@ -11,7 +10,7 @@ import {
 } from '../actions/renderer/license';
 import triggerDialog from '../libs/renderer/dialog';
 import AppConfig from '../config';
-import { LicenseKeyAPiResponse } from '../libs/license';
+
 import Loading from '../components/Loading';
 
 const Text = styled.div({
@@ -19,6 +18,11 @@ const Text = styled.div({
   width: 328,
   textAlign: 'center',
 });
+
+const ErrorText = styled(Text)`
+  color: red;
+  margin: 0 0 20px;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -74,6 +78,7 @@ export default function LicenseWindow() {
   const history = useHistory();
   const [licenseKey, setLicenseKeyField] = useState<string>('');
   const [loading, setLoadingStatus] = useState<boolean>(false);
+  const [licenseStatus, setLicenseStatus] = useState<boolean>(true);
   const storedLicense = getLicenseKey();
 
   if (
@@ -90,7 +95,9 @@ export default function LicenseWindow() {
       setLicenseKey(licenseKey);
       triggerDialog('info', translate('activate_license_screen_thankyou'));
       history.push(AppConfig.routes.home);
+      setLicenseStatus(true);
     }
+    setLicenseStatus(false);
     setLoadingStatus(false);
   }
   return (
@@ -103,6 +110,9 @@ export default function LicenseWindow() {
           <>
             <Text>{translate('activate_license_screen_paragraph1')}</Text>
             <InputsWrapper>
+              {!licenseStatus ? (
+                <ErrorText>{translate('invalid_license')}</ErrorText>
+              ) : null}
               <TextArea
                 fill
                 required
