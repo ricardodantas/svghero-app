@@ -2,7 +2,7 @@ const config = Object.freeze({
   website: 'https://svghero.app',
   credits: 'Ricardo Dantas Gonçalves',
   authors: ['Ricardo Dantas Gonçalves'],
-  apiUrl: 'https://api.svghero.app',
+  apiUrl: 'https://svghero.app/api',
   trialPeriodDays: 7,
   trialPeriodLicenseValue: 'TRIAL_PERIOD',
   routes: {

@@ -43,33 +43,29 @@ export function getLicenseKey(): LicenseKeyAPiResponse | null {
   return storeUserInfo.get(LICENSE_KEY);
 }
 
-export function setLicenseKey(licenseKey: LicenseKeyAPiResponse) {
+export function setLicenseKey(licenseKey: string) {
   return storeUserInfo.set(LICENSE_KEY, licenseKey);
 }
 
-export async function isValidLicenseKey(
-  email: string,
-  licenseKey: string
-): Promise<LicenseKeyAPiResponse | null> {
+export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
   try {
-    if (!email.length) {
-      throw new AppError('warning', 'Please fill your email address.');
-    }
-
     if (!licenseKey.length) {
       throw new AppError('warning', 'Please fill your license key.');
     }
 
-    const licenseResult = await fetch(`${AppConfig.apiUrl}/license`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, licenseKey }),
-    }).then((response) => response.json());
+    const licenseResult = await fetch(
+      `${AppConfig.apiUrl}/license?licenseKey=${licenseKey}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((response) => response.json());
+
     if (licenseResult?.enabled === true) {
-      return licenseResult;
+      return true;
     }
   } catch (error) {
     let handledError = {
@@ -83,5 +79,5 @@ export async function isValidLicenseKey(
 
     onError(handledError);
   }
-  return null;
+  return false;
 }

@@ -12,6 +12,7 @@ import {
 import triggerDialog from '../libs/renderer/dialog';
 import AppConfig from '../config';
 import { LicenseKeyAPiResponse } from '../libs/license';
+import Loading from '../components/Loading';
 
 const Text = styled.div({
   margin: '20px 0',
@@ -72,8 +73,8 @@ function RegisteredContainer(props: RegisteredContainerProps) {
 
 export default function LicenseWindow() {
   const history = useHistory();
-  const [email, setEmail] = useState<string>('');
-  const [licenseKey, setLicenseKeyField] = useState('');
+  const [licenseKey, setLicenseKeyField] = useState<string>('');
+  const [loading, setLoadingStatus] = useState<boolean>(false);
   const storedLicense = getLicenseKey();
 
   if (
@@ -84,41 +85,42 @@ export default function LicenseWindow() {
   }
 
   async function saveLicenseSettings() {
-    const validLicenseKey = await isValidLicenseKey(email, licenseKey);
+    setLoadingStatus(true);
+    const validLicenseKey = await isValidLicenseKey(licenseKey);
     if (validLicenseKey) {
-      setLicenseKey(validLicenseKey);
+      setLicenseKey(licenseKey);
       triggerDialog('info', translate('activate_license_screen_thankyou'));
       history.push(AppConfig.routes.home);
     }
+    setLoadingStatus(false);
   }
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column animate__animated animate__fadeIn">
       <Container>
         <h1 className="title">{translate('activate_license_screen_title')}</h1>
-        <Text>{translate('activate_license_screen_paragraph1')}</Text>
-        <InputsWrapper>
-          <InputGroup
-            onKeyUp={(e) => setEmail(e.currentTarget.value)}
-            leftIcon={IconNames.ENVELOPE}
-            placeholder="Email"
-            fill
-            required
-          />
-          <TextArea
-            fill
-            required
-            onKeyUp={(e) => setLicenseKeyField(e.currentTarget.value)}
-            placeholder={translate('activate_license_screen_instructions')}
-          />
-        </InputsWrapper>
-        <ButtonStyled
-          type="button"
-          onClick={saveLicenseSettings}
-          intent="primary"
-          large
-        >
-          {translate('activate')}
-        </ButtonStyled>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Text>{translate('activate_license_screen_paragraph1')}</Text>
+            <InputsWrapper>
+              <TextArea
+                fill
+                required
+                onChange={(e) => setLicenseKeyField(e.currentTarget.value)}
+                placeholder={translate('activate_license_screen_instructions')}
+              />
+            </InputsWrapper>
+            <ButtonStyled
+              type="button"
+              onClick={saveLicenseSettings}
+              intent="primary"
+              large
+            >
+              {translate('activate')}
+            </ButtonStyled>
+          </>
+        )}
       </Container>
     </div>
   );
