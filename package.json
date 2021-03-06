@@ -264,9 +264,9 @@
     "svgo": "^2.2.0"
   },
   "devEngines": {
-    "node": ">=15.x",
-    "npm": ">=7.x",
-    "yarn": ">=1.22.*"
+    "node": ">=14.x",
+    "npm": ">=6.x",
+    "yarn": ">=1.9.*"
   },
   "collective": {
     "url": "https://opencollective.com/electron-react-boilerplate-594"
