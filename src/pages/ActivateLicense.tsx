@@ -43,7 +43,7 @@ const InputsWrapper = styled.div({
 });
 
 type RegisteredContainerProps = {
-  storedLicense: LicenseKeyAPiResponse;
+  storedLicense: string;
 };
 
 function RegisteredContainer(props: RegisteredContainerProps) {
@@ -52,10 +52,9 @@ function RegisteredContainer(props: RegisteredContainerProps) {
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
-        <h1>{translate('activate_license_screen_title')}</h1>
-        <Text>
-          {translate('license_key_registered_to')} {storedLicense.buyer_email}
-        </Text>
+        <h1>{translate('license_registered')}</h1>
+        <Text>{translate('activate_license_screen_thankyou')}</Text>
+        <Text>{storedLicense}</Text>
         <ButtonStyled
           type="button"
           onClick={() => {
@@ -78,8 +77,8 @@ export default function LicenseWindow() {
   const storedLicense = getLicenseKey();
 
   if (
-    storedLicense?.buyer_email?.length &&
-    storedLicense?.buyer_email !== AppConfig.trialPeriodLicenseValue
+    storedLicense?.length &&
+    storedLicense !== AppConfig.trialPeriodLicenseValue
   ) {
     return <RegisteredContainer storedLicense={storedLicense} />;
   }

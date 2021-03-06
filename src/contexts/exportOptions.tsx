@@ -9,7 +9,7 @@ const storedExportPreferences = storeExportPreferences.get(
 
 const ExportOptionsContext = React.createContext({
   selectedFormats: Object.values(storedExportPreferences || ExportFormat),
-  setSelectedFormats: (_selectedFormats: ExportFormat[]) => {},
+  setSelectedFormats: (_selectedFormat: ExportFormat) => {},
 });
 
 export default ExportOptionsContext;

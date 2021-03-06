@@ -24,3 +24,9 @@ export const storeExportPreferences = new Store({
 export const storeUserInfo = new Store({
   name: PreferenceTypeSection.USER_INFO,
 });
+
+if (process.env.NODE_ENV === 'development') {
+  storeExportPreferences.openInEditor();
+  storeUserInfo.openInEditor();
+  storeExportPreferences.openInEditor();
+}

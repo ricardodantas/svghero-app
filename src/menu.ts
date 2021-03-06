@@ -84,8 +84,10 @@ export default class MenuBuilder {
         },
         { type: 'separator' },
         {
-          label: `${translate('activate_license')}`,
-          enabled: canActivateLicense(),
+          label: canActivateLicense()
+            ? `${translate('activate_license')}`
+            : `${translate('license')}`,
+          enabled: true,
           click: () => {
             this.mainWindow.webContents.send(
               AppConfig.ipcChannels.reactRouterGoTo,

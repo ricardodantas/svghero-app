@@ -23,21 +23,15 @@ export function setFirstUseDate() {
   }
 }
 
-export function getLicenseKey(): LicenseKeyAPiResponse | null {
+export function getLicenseKey(): string | null {
   const firstUseDate = getFirstUseDate();
   if (firstUseDate) {
     const start = DateTime.fromISO(firstUseDate);
     const end = DateTime.now();
     const { days: diffInDays } = end.diff(start, 'days').toObject();
+
     if (diffInDays <= AppConfig.trialPeriodDays) {
-      return {
-        enabled: true,
-        product_link: '',
-        buyer_email: '',
-        uses: 1,
-        date: firstUseDate,
-        license_key: AppConfig.trialPeriodLicenseValue,
-      };
+      return AppConfig.trialPeriodLicenseValue;
     }
   }
   return storeUserInfo.get(LICENSE_KEY);
