@@ -34,7 +34,7 @@ export function getLicenseKey(): string | null {
       return AppConfig.trialPeriodLicenseValue;
     }
   }
-  return storeUserInfo.get(LICENSE_KEY);
+  return storeUserInfo.get(LICENSE_KEY, null);
 }
 
 export function setLicenseKey(licenseKey: string) {
