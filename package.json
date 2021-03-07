@@ -93,8 +93,8 @@
     ],
     "publish": {
       "provider": "s3",
-      "bucket": "svgHero-releases",
-      "region": "eu-west-1"
+      "bucket": "svghero-releases",
+      "region": "us-east-1"
     }
   },
   "repository": {
