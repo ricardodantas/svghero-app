@@ -1,12 +1,12 @@
 {
   "name": "svg-hero",
   "productName": "SvgHero",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "SVG optimizer app for Mac OS, Linux and Windows.",
   "main": "./main.prod.js",
   "author": {
     "name": "Ricardo Dantas Goncalves",
-    "email": "ricardodantas@gmail.com",
+    "email": "hi@ricardodantas.me",
     "url": "https://github.com/ricardodantas"
   },
   "scripts": {
