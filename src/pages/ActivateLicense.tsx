@@ -2,6 +2,8 @@ import { Button, TextArea } from '@blueprintjs/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { shell } from 'electron';
+
 import translate from '../localization/translate';
 import {
   getLicenseKey,
@@ -46,6 +48,13 @@ const InputsWrapper = styled.div({
   minHeight: 145,
 });
 
+const BuyLicenseWrapper = styled.div({
+  borderTop: '2px solid #202B33',
+  marginTop: '50px',
+  paddingTop: '20px',
+  textAlign: 'center',
+});
+
 type RegisteredContainerProps = {
   storedLicense: string;
 };
@@ -71,6 +80,26 @@ function RegisteredContainer(props: RegisteredContainerProps) {
         </ButtonStyled>
       </Container>
     </div>
+  );
+}
+
+function BuyLicense() {
+  const onClickBuyLicense = () => {
+    const buyLicenseUrl = `${AppConfig.website}/buy`;
+    shell.openExternal(buyLicenseUrl);
+  };
+  return (
+    <BuyLicenseWrapper>
+      <Text>{translate('activate_license_screen_paragraph2')}</Text>
+      <ButtonStyled
+        type="button"
+        onClick={onClickBuyLicense}
+        intent="primary"
+        large
+      >
+        {translate('buy_license')}
+      </ButtonStyled>
+    </BuyLicenseWrapper>
   );
 }
 
@@ -128,6 +157,7 @@ export default function LicenseWindow() {
             >
               {translate('activate')}
             </ButtonStyled>
+            <BuyLicense />
           </>
         )}
       </Container>
