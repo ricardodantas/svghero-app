@@ -93,7 +93,7 @@
     ],
     "publish": {
       "provider": "s3",
-      "bucket": "svghero-releases",
+      "bucket": "releases.svghero.app",
       "region": "us-east-1"
     }
   },
