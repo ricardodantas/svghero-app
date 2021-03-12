@@ -42,6 +42,7 @@ jobs:
       - name: Publish release Mac
         if: matrix.os == 'macos-10.14'
         env:
+          ASC_PROVIDER: ${{ secrets.ASC_PROVIDER }}
           CSC_LINK: ${{ secrets.CSC_LINK }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
