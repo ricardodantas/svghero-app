@@ -21,6 +21,7 @@ export default function startSvgOptimization(selectedFiles: string[]) {
       filePath,
       ...settings,
     });
+    console.log('==> resultSVG: ', resultSVG);
     return resultSVG;
   });
 }

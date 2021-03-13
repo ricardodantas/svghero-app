@@ -1,4 +1,7 @@
+/* eslint-disable prefer-destructuring */
 import SVGO from 'svgo';
+import * as Svgson from 'svgson';
+import { svgPathBbox } from 'svg-path-bbox';
 import AppError from './errors';
 
 const { readFileSync, writeFileSync } = require('fs');
@@ -73,6 +76,43 @@ export function setSvgoSettings(plugins: SvgoPlugin[]) {
   };
 }
 
+function SvgTrim(svgContentString) {
+  const svg = Svgson.parseSync(svgContentString);
+  const paths = svg.children.filter(
+    (item) => item.name === 'path' && item.attributes.d
+  );
+
+  if (!paths.length) {
+    return svgContentString;
+  }
+
+  const pathsD = paths.map((item) => item.attributes.d);
+  let { width, height } = svg.attributes;
+  if (svg.attributes?.viewBox) {
+    const originalViewBox = svg.attributes?.viewBox?.split(' ');
+    width = originalViewBox[2];
+    height = originalViewBox[3];
+  }
+
+  const calculatedViewBox = svgPathBbox(pathsD.join(' '));
+  const viewBox = [
+    calculatedViewBox[0],
+    calculatedViewBox[1],
+    parseFloat(width),
+    parseFloat(height),
+  ];
+
+  svg.attributes.viewBox = viewBox.join(' ');
+
+  if (svg.attributes.style) {
+    delete svg.attributes.style;
+  }
+  if (svg.attributes['xml:space']) {
+    delete svg.attributes['xml:space'];
+  }
+  return Svgson.stringify(svg);
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export function SvgOptimizer(params: SvgOptimizerParams) {
   const {
@@ -84,6 +124,10 @@ export function SvgOptimizer(params: SvgOptimizerParams) {
     path: `${outputFilePath}`,
     ...DEFAULT_SVGO_SETTINGS,
   });
-  createFile({ filePath: optimizedSvg.path, fileContent: optimizedSvg.data });
+
+  const trimmedSVG = SvgTrim(optimizedSvg.data);
+
+  createFile({ filePath: optimizedSvg.path, fileContent: trimmedSVG });
+
   return optimizedSvg;
 }
