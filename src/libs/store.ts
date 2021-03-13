@@ -28,5 +28,5 @@ export const storeUserInfo = new Store({
 if (process.env.NODE_ENV === 'development') {
   storeExportPreferences.openInEditor();
   storeUserInfo.openInEditor();
-  storeExportPreferences.openInEditor();
+  storePreferences.openInEditor();
 }
