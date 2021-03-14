@@ -9,6 +9,7 @@ import {
   getLicenseKey,
   isValidLicenseKey,
   setLicenseKey,
+  verifyLicense,
 } from '../actions/renderer/license';
 import triggerDialog from '../libs/renderer/dialog';
 import AppConfig from '../config';
@@ -37,6 +38,7 @@ const Container = styled.div`
 
 const ButtonStyled = styled(Button)`
   margin-top: 20px;
+  min-width: 250px !important;
 `;
 
 const InputsWrapper = styled.div({
@@ -73,7 +75,7 @@ function RegisteredContainer(props: RegisteredContainerProps) {
           onClick={() => {
             history.push(AppConfig.routes.home);
           }}
-          intent="success"
+          intent="primary"
           large
         >
           {translate('Ok')}
@@ -103,19 +105,11 @@ function BuyLicense() {
   );
 }
 
-export default function LicenseWindow() {
+function RegisterLicense() {
   const history = useHistory();
   const [licenseKey, setLicenseKeyField] = useState<string>('');
   const [loading, setLoadingStatus] = useState<boolean>(false);
   const [licenseStatus, setLicenseStatus] = useState<boolean>(true);
-  const storedLicense = getLicenseKey();
-
-  if (
-    storedLicense?.length &&
-    storedLicense !== AppConfig.trialPeriodLicenseValue
-  ) {
-    return <RegisteredContainer storedLicense={storedLicense} />;
-  }
 
   async function saveLicenseSettings() {
     setLoadingStatus(true);
@@ -163,4 +157,39 @@ export default function LicenseWindow() {
       </Container>
     </div>
   );
+}
+
+export default function LicenseWindow() {
+  const storedLicense = getLicenseKey();
+  const [loading, setLoadingStatus] = useState<boolean>(true);
+  const [isInvalidLicense, setIsInvalidLicense] = useState(false);
+
+  React.useEffect(() => {
+    // eslint-disable-next-line promise/catch-or-return
+    verifyLicense()
+      .catch(() => {
+        setIsInvalidLicense(true);
+      })
+      .finally(() => {
+        setLoadingStatus(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
+  }
+
+  if (
+    !isInvalidLicense &&
+    storedLicense?.length &&
+    storedLicense !== AppConfig.trialPeriodLicenseValue
+  ) {
+    return <RegisteredContainer storedLicense={storedLicense} />;
+  }
+
+  return <RegisterLicense />;
 }
