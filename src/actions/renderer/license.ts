@@ -87,3 +87,14 @@ export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
   }
   return false;
 }
+
+export async function verifyLicense() {
+  const storedLicense = await getLicenseKey();
+  if (!storedLicense) {
+    throw new AppError('error', 'Sorry, no license key found.');
+  }
+  const isValid = await isValidLicenseKey(storedLicense);
+  if (!isValid) {
+    throw new AppError('error', 'Your license key is invalid or expired.');
+  }
+}

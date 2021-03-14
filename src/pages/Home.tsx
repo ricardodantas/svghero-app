@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from '@blueprintjs/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
 import icon from '../../assets/icon.svg';
@@ -18,6 +18,9 @@ import {
   AVAILABLE_STORE_KEYS,
   storeExportPreferences,
 } from '../libs/store';
+import { verifyLicense } from '../actions/renderer/license';
+import onError from '../actions/renderer/onError';
+import AppError from '../libs/errors';
 
 const Header = styled.div`
   display: flex;
@@ -36,7 +39,20 @@ const ButtonPreferences = styled(Link)`
 const Logo = styled.img({ width: 200 });
 
 const Home = () => {
+  const history = useHistory();
   initMenuTrigger();
+  verifyLicense().catch((error) => {
+    let handledError = {
+      ...error,
+      message: error.message,
+      type: 'error',
+    };
+    if (error instanceof AppError) {
+      handledError = { ...error, message: error.message };
+    }
+    onError(handledError);
+    history.push(AppConfig.routes.activateLicense);
+  });
 
   const [selectedFormats, setExportOptions] = useState(
     storeExportPreferences.get(
