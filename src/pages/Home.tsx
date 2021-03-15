@@ -41,7 +41,8 @@ const Logo = styled.img({ width: 200 });
 const Home = () => {
   const history = useHistory();
   initMenuTrigger();
-  verifyLicense().catch((error) => {
+
+  const onLicenseCheckFail = (error) => {
     let handledError = {
       ...error,
       message: error.message,
@@ -52,7 +53,13 @@ const Home = () => {
     }
     onError(handledError);
     history.push(AppConfig.routes.activateLicense);
+  };
+
+  window.addEventListener('online', () => {
+    verifyLicense().catch(onLicenseCheckFail);
   });
+
+  verifyLicense().catch(onLicenseCheckFail);
 
   const [selectedFormats, setExportOptions] = useState(
     storeExportPreferences.get(
