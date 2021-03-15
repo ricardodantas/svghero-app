@@ -65,13 +65,7 @@ export default function DropZone({ children, onFilesDropped }: DropZoneType) {
       ) : (
         <Container>
           {children}
-          <Button
-            icon="document-open"
-            type="button"
-            onClick={open}
-            intent="primary"
-            large
-          >
+          <Button type="button" onClick={open} intent="primary" large>
             {translate('select_svg_files')}
           </Button>
           <p>{translate('drop_files_here')}</p>
