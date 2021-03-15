@@ -20,6 +20,7 @@ const Text = styled.div({
   margin: '20px 0',
   width: 328,
   textAlign: 'center',
+  maxWidth: '100%',
 });
 
 const ErrorText = styled(Text)`
@@ -68,8 +69,14 @@ function RegisteredContainer(props: RegisteredContainerProps) {
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
         <h1>{translate('license_registered')}</h1>
-        <Text>{translate('activate_license_screen_thankyou')}</Text>
-        <Text>{storedLicense}</Text>
+        {storedLicense.length > 40 ? (
+          <Text>BETA PROGRAM</Text>
+        ) : (
+          <>
+            <Text>{translate('activate_license_screen_thankyou')}</Text>
+            <Text>{storedLicense}</Text>
+          </>
+        )}
         <ButtonStyled
           type="button"
           onClick={() => {
