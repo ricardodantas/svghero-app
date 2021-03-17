@@ -16,13 +16,6 @@ export function getFirstUseDate() {
   return false;
 }
 
-export function setFirstUseDate() {
-  if (!getFirstUseDate()) {
-    const firstUseDate = DateTime.now().toISO();
-    storeUserInfo.set(FIRST_USE_DATE_KEY, firstUseDate);
-  }
-}
-
 export function getLicenseKey(): string | null {
   const firstUseDate = getFirstUseDate();
   if (firstUseDate) {
@@ -56,8 +49,9 @@ export function setLicenseKey(licenseKey: string) {
 export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
   try {
     if (navigator.onLine !== true) {
-      return false;
+      return true;
     }
+
     if (!licenseKey.length) {
       throw new AppError('warning', 'Please fill your license key.');
     }
@@ -91,12 +85,28 @@ export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
   return false;
 }
 
+export function setFirstUseDate() {
+  if (!getFirstUseDate()) {
+    const firstUseDate = DateTime.now().toISO();
+    storeUserInfo.set(FIRST_USE_DATE_KEY, firstUseDate);
+    setLicenseKey(AppConfig.trialPeriodLicenseValue);
+  }
+}
+
 export async function verifyLicense() {
   if (navigator.onLine === true) {
     const storedLicense = await getLicenseKey();
+    if (
+      checkStoredLicense() &&
+      storedLicense === AppConfig.trialPeriodLicenseValue
+    ) {
+      return;
+    }
+
     if (!storedLicense) {
       throw new AppError('error', 'Sorry, no license key found.');
     }
+
     const isValid = await isValidLicenseKey(storedLicense);
     if (!isValid) {
       throw new AppError('error', 'Your license key is invalid or expired.');
