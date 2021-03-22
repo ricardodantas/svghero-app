@@ -10,15 +10,13 @@ import {
 const { Notification } = require('electron');
 
 async function onClickHandler(onClickParams?: OnClickParams) {
-  if (onClickParams) {
+  if (onClickParams && onClickParams.filePath) {
     switch (onClickParams.action) {
       case NotificationOnClickAction.openFile:
-        if (onClickParams.filePath)
-          shell.showItemInFolder(onClickParams.filePath);
+        shell.showItemInFolder(onClickParams.filePath);
         break;
       case NotificationOnClickAction.openFolder:
-        if (onClickParams.filePath)
-          await shell.openPath(onClickParams.filePath);
+        await shell.openPath(onClickParams.filePath);
         break;
     }
   }
