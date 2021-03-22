@@ -43,6 +43,13 @@ docker run --rm -ti \
  electronuserland/builder:wine
 ```
 
+## Check Mac Code Sign
+
+```
+codesign --display --verbose=2  MyApp.app // If the app is signed it will display the details in the Terminal.
+pkgutil --check-signature MyApp-1.0.0.pkg // If it is signed it will display the details in the Terminal.
+```
+
 ## Debug Packaged app
 
 1. Run the command bellow on terminal:

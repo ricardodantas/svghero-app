@@ -11,6 +11,7 @@
     "package": "rm -rf src/dist && yarn build && electron-builder build --publish never",
     "package:mac": "rm -rf src/dist && yarn build && electron-builder build --mac dmg --publish never",
     "package-all": "yarn build && electron-builder build -mwl",
+    "release:mas": "cross-env DISTRIBUTION=mas rm -rf src/dist && yarn build && electron-builder build",
     "release": "rm -rf src/dist && yarn build && electron-builder build --publish always",
     "postinstall": "node -r @babel/register .erb/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && opencollective-postinstall && yarn-deduplicate yarn.lock",
     "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && cross-env yarn start:renderer",
@@ -46,6 +47,7 @@
     "afterSign": ".erb/scripts/Notarize.js",
     "mac": {
       "target": [
+        "mas",
         "zip",
         "dmg"
       ],
@@ -55,6 +57,14 @@
       "entitlements": "assets/entitlements.mac.plist",
       "entitlementsInherit": "assets/entitlements.mac.plist",
       "gatekeeperAssess": false
+    },
+    "mas": {
+      "hardenedRuntime": false,
+      "provisioningProfile": "assets/svghero_mac_app_store.provisionprofile",
+      "entitlements": "assets/entitlements.mas.plist",
+      "entitlementsInherit": "assets/entitlements.mas.inherit.plist",
+      "gatekeeperAssess": false,
+      "asarUnpack": []
     },
     "dmg": {
       "window": {
