@@ -5,6 +5,7 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
+import is from 'electron-is';
 import translate from './localization/translate';
 import AppConfig from './config';
 import checkForUpdates, { canUpdate } from './actions/main/checkForUpdates';
@@ -57,6 +58,29 @@ export default class MenuBuilder {
   }
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
+    const updateAndLicenseOptions: Menu = is.mas()
+      ? [{ type: 'separator' }]
+      : [
+          { type: 'separator' },
+          {
+            label: `${translate('Check for Updates')}`,
+            enabled: canUpdate(),
+            click: (menuItem) => checkForUpdates(menuItem),
+          },
+          { type: 'separator' },
+          {
+            label: canActivateLicense()
+              ? `${translate('activate_license')}`
+              : `${translate('license')}`,
+            enabled: true,
+            click: () => {
+              this.mainWindow.webContents.send(
+                AppConfig.ipcChannels.reactRouterGoTo,
+                AppConfig.routes.activateLicense
+              );
+            },
+          },
+        ];
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
       label: app.getName(),
       submenu: [
@@ -75,27 +99,8 @@ export default class MenuBuilder {
             );
           },
         },
+        ...updateAndLicenseOptions,
         // { label: 'Services', submenu: [] },
-        { type: 'separator' },
-        {
-          label: `${translate('Check for Updates')}`,
-          enabled: canUpdate(),
-          click: (menuItem) => checkForUpdates(menuItem),
-        },
-        { type: 'separator' },
-        {
-          label: canActivateLicense()
-            ? `${translate('activate_license')}`
-            : `${translate('license')}`,
-          enabled: true,
-          click: () => {
-            this.mainWindow.webContents.send(
-              AppConfig.ipcChannels.reactRouterGoTo,
-              AppConfig.routes.activateLicense
-            );
-          },
-        },
-        { type: 'separator' },
         {
           label: `${translate('Hide')} ${app.getName()}`,
           accelerator: 'Command+H',

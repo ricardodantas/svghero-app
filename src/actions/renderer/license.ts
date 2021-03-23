@@ -1,3 +1,4 @@
+import is from 'electron-is';
 import { LICENSE_KEY } from '../../libs/license';
 import { storeUserInfo } from '../../libs/store';
 import AppConfig from '../../config';
@@ -31,6 +32,10 @@ export function getLicenseKey(): string | null {
 }
 
 export function checkStoredLicense() {
+  if (is.mas()) {
+    return true;
+  }
+
   const license = getLicenseKey();
   if (AppConfig.trialPeriodLicenseValue === license) {
     return true;

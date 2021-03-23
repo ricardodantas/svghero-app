@@ -3,6 +3,7 @@ import { Icon } from '@blueprintjs/core';
 import { Link, useHistory } from 'react-router-dom';
 import { IconNames } from '@blueprintjs/icons';
 import styled from 'styled-components';
+import is from 'electron-is';
 import icon from '../../assets/icon.svg';
 
 import onFilesDropped from '../actions/renderer/onFilesDropped';
@@ -42,24 +43,24 @@ const Home = () => {
   const history = useHistory();
   initMenuTrigger();
 
-  const onLicenseCheckFail = (error) => {
-    let handledError = {
-      ...error,
-      message: error.message,
-      type: 'error',
+  if (!is.mas()) {
+    const onLicenseCheckFail = (error) => {
+      let handledError = {
+        ...error,
+        message: error.message,
+        type: 'error',
+      };
+      if (error instanceof AppError) {
+        handledError = { ...error, message: error.message };
+      }
+      onError(handledError);
+      history.push(AppConfig.routes.activateLicense);
     };
-    if (error instanceof AppError) {
-      handledError = { ...error, message: error.message };
-    }
-    onError(handledError);
-    history.push(AppConfig.routes.activateLicense);
-  };
-
-  window.addEventListener('online', () => {
+    window.addEventListener('online', () => {
+      verifyLicense().catch(onLicenseCheckFail);
+    });
     verifyLicense().catch(onLicenseCheckFail);
-  });
-
-  verifyLicense().catch(onLicenseCheckFail);
+  }
 
   const [selectedFormats, setExportOptions] = useState(
     storeExportPreferences.get(

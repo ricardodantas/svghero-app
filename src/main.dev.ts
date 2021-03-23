@@ -14,6 +14,7 @@ import path from 'path';
 import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import is from 'electron-is';
 import MenuBuilder from './menu';
 import AppConfig from './config';
 import initNotificationListener from './libs/main/notification';
@@ -133,8 +134,10 @@ const createWindow = async () => {
   });
 
   // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  new AppUpdater();
+  if (!is.mas()) {
+    // eslint-disable-next-line
+    new AppUpdater();
+  }
 };
 
 /**
