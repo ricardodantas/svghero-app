@@ -50,6 +50,15 @@ codesign --display --verbose=2  MyApp.app // If the app is signed it will displa
 pkgutil --check-signature MyApp-1.0.0.pkg // If it is signed it will display the details in the Terminal.
 ```
 
+## Issues with certificates (Apple)
+
+1. Change your trust settings of your developer certificate in keychain access to system default
+2. Delete all certificates in your local keychain
+3. Quit and relaunch xcode
+4. Clean
+5. Run program on device
+6. When it asks, enter your keychain password and click always trust
+
 ## Debug Packaged app
 
 1. Run the command bellow on terminal:
