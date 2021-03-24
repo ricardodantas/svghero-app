@@ -56,11 +56,11 @@
       "hardenedRuntime": true,
       "entitlements": "assets/entitlements.mac.plist",
       "entitlementsInherit": "assets/entitlements.mac.plist",
-      "gatekeeperAssess": false
+      "gatekeeperAssess": false,
+      "provisioningProfile": "assets/embedded.provisionprofile"
     },
     "mas": {
       "hardenedRuntime": false,
-      "provisioningProfile": "assets/svghero_mac_app_store.provisionprofile",
       "entitlements": "assets/entitlements.mas.plist",
       "entitlementsInherit": "assets/entitlements.mas.inherit.plist",
       "gatekeeperAssess": false,
