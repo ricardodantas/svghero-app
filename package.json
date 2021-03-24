@@ -33,7 +33,7 @@
   },
   "build": {
     "productName": "SvgHero",
-    "appId": "app.SvgHero",
+    "appId": "app.svgHero",
     "files": [
       "dist/",
       "node_modules/",
