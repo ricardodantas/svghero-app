@@ -48,6 +48,7 @@
         "zip",
         "dmg"
       ],
+      "icon": "assets/icon.icns",
       "type": "distribution",
       "hardenedRuntime": true,
       "entitlements": "assets/entitlements.mac.plist",
