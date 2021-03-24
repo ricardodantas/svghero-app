@@ -4,8 +4,6 @@
     <dict>
         <key>com.apple.security.app-sandbox</key>
         <true/>
-        <key>ElectronTeamID</key>
-        <string>8966HM892G</string>
         <key>com.apple.security.application-groups</key>
         <array>
             <string>8966HM892G.app.svghero</string>
