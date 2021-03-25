@@ -12,6 +12,7 @@
     "package:mac": "rm -rf src/dist && yarn build && electron-builder build --mac dmg --publish never",
     "package-all": "yarn build && electron-builder build -mwl",
     "release:mas": "cross-env DISTRIBUTION=mas rm -rf src/dist && yarn build && electron-builder build --mac mas",
+    "release:mas-dev": "cross-env DISTRIBUTION=mas rm -rf src/dist && yarn build && electron-builder build --mac mas-dev --publish never",
     "release": "rm -rf src/dist && yarn build && electron-builder build --publish always",
     "postinstall": "node -r @babel/register .erb/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && opencollective-postinstall && yarn-deduplicate yarn.lock",
     "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && cross-env yarn start:renderer",
