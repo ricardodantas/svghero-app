@@ -17,6 +17,16 @@ export function getFirstUseDate() {
   return false;
 }
 
+export function getRemainingTrialPeriod() {
+  const firstUseDate = getFirstUseDate();
+  const end = DateTime.fromISO(firstUseDate).plus({
+    days: AppConfig.trialPeriodDays,
+  });
+  const start = DateTime.now();
+  const { days: diffInDays } = end.diff(start, 'days').toObject();
+  return diffInDays.toFixed(0);
+}
+
 export function getLicenseKey(): string | null {
   const firstUseDate = getFirstUseDate();
   if (firstUseDate) {

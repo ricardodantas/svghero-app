@@ -19,9 +19,13 @@ import {
   AVAILABLE_STORE_KEYS,
   storeExportPreferences,
 } from '../libs/store';
-import { verifyLicense } from '../actions/renderer/license';
+import {
+  getRemainingTrialPeriod,
+  verifyLicense,
+} from '../actions/renderer/license';
 import onError from '../actions/renderer/onError';
 import AppError from '../libs/errors';
+import RemainingTrialPeriod from '../components/RemainingTrialPeriod';
 
 const Header = styled.div`
   display: flex;
@@ -87,6 +91,8 @@ const Home = () => {
     setExportOptions(conversionFormatValue);
   }
 
+  const remainingTrialPeriod = getRemainingTrialPeriod();
+
   return (
     <ExportOptionsContext.Provider
       value={{ selectedFormats, setSelectedFormats }}
@@ -102,6 +108,10 @@ const Home = () => {
       >
         <Icon icon={IconNames.COG} iconSize={Icon.SIZE_LARGE} />
       </ButtonPreferences>
+      {remainingTrialPeriod <= AppConfig.trialPeriodDays &&
+        remainingTrialPeriod > 0 && (
+          <RemainingTrialPeriod remainingTrialPeriod={remainingTrialPeriod} />
+        )}
     </ExportOptionsContext.Provider>
   );
 };

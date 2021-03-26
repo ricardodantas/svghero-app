@@ -59,5 +59,6 @@
   "notification_message_files_exported": "Files exported to",
   "notification_title_file_exported": "File exported",
   "notification_message_file_exported": "File exported to",
-  "invalid_license": "Sorry, this is an invalid license."
+  "invalid_license": "Sorry, this is an invalid license.",
+  "remaining_trial_period_text": "You have {remainingTrialPeriod} days remaining on you trial period."
 }
