@@ -27,8 +27,7 @@ const DropFilesHere = () => {
     <div className="no-scroll height-size-full align-center-xy flex-direction-column title">
       <Icon
         icon={IconNames.DOWNLOAD}
-        iconSize={Icon.SIZE_LARGE}
-        className="animate__infinite animate__animated animate__fadeInDown"
+        className="animate__infinite animate__animated animate__fadeInDown bigIcon"
       />
       <Message>{translate('drop_files_now')}</Message>
     </div>
