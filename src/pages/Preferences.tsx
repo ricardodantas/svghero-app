@@ -21,7 +21,7 @@ const FixedBar = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px;
+  padding: 25px 15px 15px;
   z-index: 1;
 `;
 
@@ -114,7 +114,7 @@ export default function Preferences() {
   return (
     <div
       ref={mainContainerRef}
-      className="height-size-full padding-medium-xy animate__animated animate__fadeInUp"
+      className="height-size-full padding-medium-x animate__animated animate__fadeInUp"
     >
       <FixedBar className="body-background-color">
         <Header>

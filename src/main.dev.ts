@@ -97,6 +97,7 @@ const createWindow = async () => {
     icon: getAssetPath('icon.png'),
     title: app.getName(),
     resizable: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: false,

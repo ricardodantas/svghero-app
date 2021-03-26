@@ -35,7 +35,7 @@ const ButtonPreferences = styled(Link)`
   position: fixed;
   top: 0;
   left: 0;
-  padding: 15px;
+  padding: 33px 15px 15px;
 `;
 const Logo = styled.img({ width: 200 });
 

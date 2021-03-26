@@ -184,9 +184,11 @@ export default function LicenseWindow() {
 
   if (loading) {
     return (
-      <Container>
-        <Loading />
-      </Container>
+      <div className="no-scroll height-size-full align-center-xy flex-direction-column animate__animated animate__fadeIn">
+        <Container>
+          <Loading />
+        </Container>
+      </div>
     );
   }
 
