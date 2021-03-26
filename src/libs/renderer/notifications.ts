@@ -11,6 +11,10 @@ export function showSuccessExportNotification({
   selectedFormatsForExport: string[];
   optimizedFilePaths: string[];
 }) {
+  if (!optimizedFilePaths || !selectedFormatsForExport) {
+    return;
+  }
+
   const totalFilesExported =
     optimizedFilePaths.length * selectedFormatsForExport.length;
 

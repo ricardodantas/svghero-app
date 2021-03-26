@@ -69,7 +69,7 @@ function RegisteredContainer(props: RegisteredContainerProps) {
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
         <h1>{translate('license_registered')}</h1>
-        {storedLicense.length > 40 ? (
+        {storedLicense && storedLicense.length > 40 ? (
           <Text>BETA PROGRAM</Text>
         ) : (
           <>

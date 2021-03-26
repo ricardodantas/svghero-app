@@ -57,7 +57,7 @@ export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
       return true;
     }
 
-    if (!licenseKey.length) {
+    if (!licenseKey || !licenseKey.length) {
       throw new AppError('warning', 'Please fill your license key.');
     }
 
