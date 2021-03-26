@@ -71,10 +71,8 @@ export function showSuccessNotification(selectedFiles: string[]) {
         };
   const notificationMessage =
     selectedFiles.length > 1
-      ? `${selectedFiles.length} ${translate(
-          'notification_message_files_optimized'
-        )}`
-      : selectedFiles[0];
+      ? translate('click_here_to_open_optimized_files')
+      : translate('click_here_to_open_optimized_file');
   const notificationParams = {
     title: translate(notificationTitle),
     body: notificationMessage,
