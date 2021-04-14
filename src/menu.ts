@@ -99,7 +99,8 @@ export default class MenuBuilder {
             );
           },
         },
-        ...updateAndLicenseOptions,
+        { type: 'separator' },
+        // ...updateAndLicenseOptions,
         // { label: 'Services', submenu: [] },
         {
           label: `${translate('Hide')} ${app.getName()}`,
@@ -200,6 +201,14 @@ export default class MenuBuilder {
           label: translate('Report an issue'),
           click() {
             shell.openExternal(`${AppConfig.website}/report-issue`);
+          },
+        },
+        {
+          label: translate('Community'),
+          click() {
+            shell.openExternal(
+              `https://github.com/ricardodantas/svghero-app/discussions`
+            );
           },
         },
       ],

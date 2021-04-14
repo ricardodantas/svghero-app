@@ -6,6 +6,7 @@ import { shell } from 'electron';
 
 import translate from '../localization/translate';
 import {
+  getLicenseEditionType,
   getLicenseKey,
   isValidLicenseKey,
   setLicenseKey,
@@ -15,6 +16,7 @@ import triggerDialog from '../libs/renderer/dialog';
 import AppConfig from '../config';
 
 import Loading from '../components/Loading';
+import { EditionType, LicenseEdition } from '../libs/license';
 
 const Text = styled.div({
   margin: '20px 0',
@@ -60,17 +62,19 @@ const BuyLicenseWrapper = styled.div({
 
 type RegisteredContainerProps = {
   storedLicense: string;
+  licenseEditionType: EditionType;
 };
 
 function RegisteredContainer(props: RegisteredContainerProps) {
   const history = useHistory();
-  const { storedLicense } = props;
+  const { storedLicense, licenseEditionType } = props;
+
   return (
     <div className="no-scroll height-size-full align-center-xy flex-direction-column bp3-dark">
       <Container>
         <h1>{translate('license_registered')}</h1>
         {storedLicense && storedLicense.length > 40 ? (
-          <Text>BETA PROGRAM</Text>
+          <Text>{licenseEditionType}</Text>
         ) : (
           <>
             <Text>{translate('activate_license_screen_thankyou')}</Text>
@@ -170,6 +174,9 @@ export default function LicenseWindow() {
   const storedLicense = getLicenseKey();
   const [loading, setLoadingStatus] = useState<boolean>(true);
   const [isInvalidLicense, setIsInvalidLicense] = useState(false);
+  const [licenseEditionType, setLicenseEditionType] = useState<LicenseEdition>(
+    LicenseEdition.COMMUNITY_EDITION
+  );
 
   React.useEffect(() => {
     // eslint-disable-next-line promise/catch-or-return
@@ -180,6 +187,10 @@ export default function LicenseWindow() {
       .finally(() => {
         setLoadingStatus(false);
       });
+    // eslint-disable-next-line promise/catch-or-return
+    getLicenseEditionType().then((res: LicenseEdition) => {
+      return setLicenseEditionType(res);
+    });
   }, []);
 
   if (loading) {
@@ -197,7 +208,12 @@ export default function LicenseWindow() {
     storedLicense?.length &&
     storedLicense !== AppConfig.trialPeriodLicenseValue
   ) {
-    return <RegisteredContainer storedLicense={storedLicense} />;
+    return (
+      <RegisteredContainer
+        storedLicense={storedLicense}
+        licenseEditionType={licenseEditionType}
+      />
+    );
   }
 
   return <RegisterLicense />;

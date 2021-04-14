@@ -5,6 +5,7 @@ const config = Object.freeze({
   apiUrl: 'https://svghero.app/api',
   trialPeriodDays: 7,
   trialPeriodLicenseValue: 'TRIAL_PERIOD',
+  communityEditionLicense: 'COMMUNITY_EDITION',
   routes: {
     home: '/',
     preferences: '/preferences',

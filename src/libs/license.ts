@@ -9,3 +9,14 @@ export type LicenseKeyAPiResponse = {
   uses: number;
   date: string;
 };
+
+export enum LicenseEdition {
+  COMMUNITY_EDITION = 'Community Edition',
+  BETA_PROGRAM = 'Beta Program',
+  PRO = 'PRO',
+}
+
+export type EditionType =
+  | LicenseEdition.COMMUNITY_EDITION
+  | LicenseEdition.BETA_PROGRAM
+  | LicenseEdition.PRO;

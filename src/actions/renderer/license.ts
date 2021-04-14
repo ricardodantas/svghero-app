@@ -1,5 +1,5 @@
 import is from 'electron-is';
-import { LICENSE_KEY } from '../../libs/license';
+import { LicenseEdition, LICENSE_KEY } from '../../libs/license';
 import { storeUserInfo } from '../../libs/store';
 import AppConfig from '../../config';
 import onError from './onError';
@@ -41,24 +41,31 @@ export function getLicenseKey(): string | null {
   return storeUserInfo.get(LICENSE_KEY, null);
 }
 
+export function setLicenseKey(licenseKey: string) {
+  return storeUserInfo.set(LICENSE_KEY, licenseKey);
+}
+
 export function checkStoredLicense() {
   if (is.mas()) {
     return true;
   }
 
   const license = getLicenseKey();
-  if (AppConfig.trialPeriodLicenseValue === license) {
+
+  if (!license || AppConfig.trialPeriodLicenseValue === license) {
+    setLicenseKey(AppConfig.communityEditionLicense);
     return true;
   }
+
+  if (AppConfig.communityEditionLicense === license) {
+    return true;
+  }
+
   if (license !== null && license.length >= 30) {
     return true;
   }
 
   return false;
-}
-
-export function setLicenseKey(licenseKey: string) {
-  return storeUserInfo.set(LICENSE_KEY, licenseKey);
 }
 
 export async function isValidLicenseKey(licenseKey: string): Promise<boolean> {
@@ -104,17 +111,19 @@ export function setFirstUseDate() {
   if (!getFirstUseDate()) {
     const firstUseDate = DateTime.now().toISO();
     storeUserInfo.set(FIRST_USE_DATE_KEY, firstUseDate);
-    setLicenseKey(AppConfig.trialPeriodLicenseValue);
+    setLicenseKey(AppConfig.communityEditionLicense);
   }
 }
 
 export async function verifyLicense() {
+  const storedLicense = await getLicenseKey();
+
+  if (storedLicense === AppConfig.communityEditionLicense) {
+    return;
+  }
+
   if (navigator.onLine === true) {
-    const storedLicense = await getLicenseKey();
-    if (
-      checkStoredLicense() &&
-      storedLicense === AppConfig.trialPeriodLicenseValue
-    ) {
+    if (checkStoredLicense()) {
       return;
     }
 
@@ -127,4 +136,17 @@ export async function verifyLicense() {
       throw new AppError('error', 'Your license key is invalid or expired.');
     }
   }
+}
+
+export async function getLicenseEditionType() {
+  const storedLicense = await getLicenseKey();
+  if (storedLicense && storedLicense.length > 40) {
+    return LicenseEdition.BETA_PROGRAM;
+  }
+
+  if (storedLicense && (await isValidLicenseKey(storedLicense))) {
+    return LicenseEdition.PRO;
+  }
+
+  return LicenseEdition.COMMUNITY_EDITION;
 }
