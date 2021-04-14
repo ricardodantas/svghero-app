@@ -1,3 +1,5 @@
+![Powered by Electron](https://img.shields.io/badge/powered%20by-Electron-brightgreen?style=flat-square) ![GitHub branch checks state](https://img.shields.io/github/checks-status/ricardodantas/svghero-app/master?style=flat-square) ![GitHub](https://img.shields.io/github/license/ricardodantas/svghero-app?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/ricardodantas/svghero-app?style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/ricardodantas/svghero-app?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/ricardodantas/svghero-app/total?style=flat-square)
+
 # SVG Hero
 
 Multi-platform (Mac, Windows, Linux) app that minifies SVG files and exports to PNG, JPG, TIFF or WEBP.
@@ -5,8 +7,6 @@ Multi-platform (Mac, Windows, Linux) app that minifies SVG files and exports to 
 [![Check the video preview!](https://img.youtube.com/vi/MTGt5tQc-vo/0.jpg)](https://www.youtube.com/watch?v=MTGt5tQc-vo 'Check the video preview!')
 
 Check the video preview 👆
-
-⚡️ Powered by  Electron(https://www.electronjs.org/)
 
 ---
 
