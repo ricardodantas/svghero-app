@@ -6,6 +6,8 @@ Multi-platform (Mac, Windows, Linux) app that minifies SVG files and exports to 
 
 Check the video preview 👆
 
+⚡️ Powered by  Electron(https://www.electronjs.org/)
+
 ---
 
 ## Contributing
