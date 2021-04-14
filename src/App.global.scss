@@ -1,0 +1,137 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+
+@import '~normalize.css';
+@import '~animate.css';
+
+@import '~@blueprintjs/core/lib/scss/variables.scss';
+
+$pt-intent-primary: #a252db;
+$pt-link-color: #ea77d1;
+$pt-dark-link-color: #8b4adf;
+$pt-icon-color-selected: $pt-dark-link-color;
+$blue1: $pt-dark-link-color;
+$blue2: lighten($blue1, 10%);
+
+@import '~@blueprintjs/core/src/blueprint.scss';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+
+body {
+  position: relative;
+  color: $white;
+  height: 100vh;
+  background-color: $dark-gray1;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 15px 0;
+}
+
+.title {
+  color: $pt-link-color;
+}
+
+.border-top {
+  border-top: 1px solid $dark-gray3;
+}
+// @media (prefers-color-scheme: dark) {
+//   body {
+//     color: #eee;
+//     background: var(--body-background-color);
+//   }
+//   body a {
+//     color: #809fff;
+//     cursor: pointer;
+//     &:hover{
+//       color: #809fff;
+//       opacity: 0.7;
+//     }
+//   }
+// }
+
+button,
+label {
+  outline: none;
+  box-shadow: none;
+}
+
+button {
+  transition: transform ease-in 0.1s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.body-background-color {
+  background-color: $dark-gray1;
+}
+
+.button-icon-only-color {
+  color: $dark-gray2;
+}
+.border-color {
+  border-top-color: $dark-gray3;
+  border-bottom-color: $dark-gray3;
+  border-left-color: $dark-gray3;
+  border-right-color: $dark-gray3;
+}
+
+:focus,
+:active {
+  outline: none;
+  outline-offset: 0;
+  outline-color: transparent;
+  box-shadow: none;
+}
+
+.bp3-control {
+  @extend .bp3-control;
+  margin-bottom: 0;
+}
+
+.bp3-input {
+  background-color: $dark-gray2;
+  outline: none;
+  color: $white;
+}
+
+.height-size-full {
+  height: 100vh;
+  padding-top: 25px;
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+.flex-direction-column {
+  flex-direction: column;
+}
+.flex-direction-row {
+  flex-direction: row;
+}
+.align-center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.padding-small-xy {
+  padding: 5px;
+}
+
+.padding-medium-xy {
+  padding: 15px;
+}
+
+.padding-medium-x {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.bigIcon svg {
+  width: 70px;
+  height: auto;
+}
