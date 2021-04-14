@@ -2,7 +2,7 @@
 
 Multi-platform (Mac, Windows, Linux) app that minifies SVG files and exports to PNG, JPG, TIFF or WEBP.
 
-[![Check the video preview](https://img.youtube.com/vi/MTGt5tQc-vo/0.jpg)](https://www.youtube.com/watch?v=MTGt5tQc-vo)
+[![Check the video preview!](https://img.youtube.com/vi/MTGt5tQc-vo/0.jpg)](https://www.youtube.com/watch?v=MTGt5tQc-vo 'Check the video preview!')
 
 Check the video preview 👆
 
@@ -74,3 +74,7 @@ pkgutil --check-signature SvgHero-1.0.0.pkg // If it is signed it will display t
 ## Resources
 
 - electron-react-boilerplate [docs and guides](https://electron-react-boilerplate.js.org/docs/installation)
+
+## License
+
+[GPL-3.0](https://github.com/ricardodantas/svghero-app/blob/master/LICENSE)
