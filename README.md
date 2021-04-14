@@ -25,10 +25,6 @@ To package apps for the local platform:
 yarn package
 ```
 
-## Installation or compilation issues with this project:
-
-Please check the [electron-react-boilerplate debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400);
-
 ## Create Linux package with docker
 
 ```
@@ -73,7 +69,9 @@ pkgutil --check-signature SvgHero-1.0.0.pkg // If it is signed it will display t
 
 ## Resources
 
-- electron-react-boilerplate [docs and guides](https://electron-react-boilerplate.js.org/docs/installation)
+- electron-react-boilerplate [docs and guides](https://electron-react-boilerplate.js.org/docs/installation);
+
+- Installation or compilation issues with this project, check [electron-react-boilerplate debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400);
 
 ## License
 
