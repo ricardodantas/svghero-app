@@ -42,19 +42,21 @@ jobs:
         run: |
           yarn run release
 
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          snapcraft_token: ${{ secrets.SNAPCRAFT_TOKEN }}
+      # - name: Install Snapcraft
+      #   uses: samuelmeuli/action-snapcraft@v1
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   with:
+      #     snapcraft_token: ${{ secrets.SNAPCRAFT_TOKEN }}
 
       - name: Publish release Linux
         if: startsWith(matrix.os, 'ubuntu')
-        uses: samuelmeuli/action-electron-builder@v1
+        # uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          snapcraft_token: ${{ secrets.SNAPCRAFT_TOKEN }}
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          # snapcraft_token: ${{ secrets.SNAPCRAFT_TOKEN }}
+          # release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          yarn run release
 
       - name: Publish release Windows
         if: startsWith(matrix.os, 'win')
