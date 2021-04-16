@@ -9,14 +9,22 @@ Multi-platform (Mac, Windows, Linux) app that minifies SVG files and exports to 
 Check the video preview 👆
 
 ---
+## Download
+
+⬇️ [Download here](https://svghero.app/download)
+
+
+## Sponsor
+
+<a href="https://www.buymeacoffee.com/ricardodantas" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+
 
 ## Contributing
 
 More details on [CONTRIBUTING](CONTRIBUTING.md).
 
-## Code of conduct
-
-See [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md).
+***
 
 ## Starting Development
 
